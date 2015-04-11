@@ -8,7 +8,7 @@ public class SpecialWeapon : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        m_weaponType = SPECIAL_WEAPON.MISSILE;
+        m_weaponType = SPECIAL_WEAPON.SPEED_BOOST;
 	}
 
     void OnCollisionEnter(Collision collision)

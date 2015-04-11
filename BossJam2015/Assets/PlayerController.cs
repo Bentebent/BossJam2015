@@ -7,6 +7,7 @@ public enum SPECIAL_WEAPON
     NONE,
     MINE,
     MISSILE,
+    SPEED_BOOST,
     COUNT
 }
 
@@ -53,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public int m_ammoCount = 0;
 
     List<string> m_playerTags;
+
+    float m_speedBoost = 0.0f;
+    float m_speedBoostTimer = -1.0f;
 
 	// Use this for initialization
 	void Start () 
@@ -115,6 +119,8 @@ public class PlayerController : MonoBehaviour
         m_turret.transform.rotation = m_turretStartRot;
 
         m_dead = false;
+
+        m_lives--;
     }
 	
 	// Update is called once per frame
@@ -153,9 +159,9 @@ public class PlayerController : MonoBehaviour
         else
             deaccSpeed = 5.0f;
 
-        gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
+        gameObject.transform.position += transform.forward * (m_currentSpeed * m_speedBoost) * Time.deltaTime;
 
-
+       
 
         if (m_currentSpeed > 0.0f && !m_moved)
             m_currentSpeed -= deaccSpeed * Time.deltaTime;
@@ -164,6 +170,11 @@ public class PlayerController : MonoBehaviour
         
         RotateTurret();
         Shoot();
+
+        m_speedBoostTimer -= Time.deltaTime;
+
+        if (m_speedBoostTimer <= 0.0f)
+            m_speedBoost = 0.0f;
        
 	}
 
@@ -201,9 +212,26 @@ public class PlayerController : MonoBehaviour
                 GameObject go = (GameObject)Instantiate(Resources.Load("Missile"));
                 go.transform.position = transform.position + transform.forward.normalized;
 
-                GameObject target = GameObject.FindGameObjectWithTag("Player1");
-                Missile m = go.GetComponent<Missile>();
-                m.m_target = target;
+                for (int i = 0; i < m_playerTags.Count; i++)
+                {
+                    if (m_playerTags[i] != gameObject.tag)
+                    {
+                        GameObject target = GameObject.FindGameObjectWithTag(m_playerTags[i]);
+
+                        if (target != null)
+                        {
+                            Debug.Log(m_playerTags[i]);
+                            Debug.Log(gameObject.tag);
+                            Missile m = go.GetComponent<Missile>();
+                            m.m_target = target;
+                        }
+                    }
+                }
+            }
+            else if (m_specialWeapon == SPECIAL_WEAPON.SPEED_BOOST && m_speedBoostTimer < 0.0f)
+            {
+                m_speedBoostTimer = 5.0f;
+                m_speedBoost = 10.0f;
             }
         }
     }
