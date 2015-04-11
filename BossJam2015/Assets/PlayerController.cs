@@ -61,6 +61,16 @@ public class PlayerController : MonoBehaviour
         z = Input.GetAxis("MoveHorizontal_Player" + m_playerName);
         x = Input.GetAxis("MoveVertical_Player" + m_playerName);
 
+        LayerMask boardTiles = 1 << LayerMask.NameToLayer("Environment");
+        Ray ray = new Ray();
+        ray.origin = transform.position;
+        ray.direction = new Vector3(0, -1, 0);
+        
+        Physics.Raycast(ray, boardTiles);
+
+        if 
+
+
         if (transform.position.y < 5.0f)
         {
             RotateTracks(x, z);
