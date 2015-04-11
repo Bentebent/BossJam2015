@@ -215,11 +215,12 @@ MonoBehaviour:
   m_oldX: 0
   m_oldZ: 0
   m_rotationSpeed: 5
-  m_playerName: Two
+  m_playerName: One
   m_dead: 0
   m_rigidBody: {fileID: 0}
   m_turretRB: {fileID: 0}
   m_contactPoint: {x: 0, y: 0, z: 0}
+  m_lives: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
