@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private float m_shotLimit = 1.0f;
     private float m_shotTimer = 0.0f;
 
+    private bool m_moved = false;
 
 	// Use this for initialization
 	void Start () 
@@ -58,6 +59,8 @@ public class PlayerController : MonoBehaviour
         float x = 0;
         float z = 0;
 
+        m_moved = false;
+
         z = Input.GetAxis("MoveHorizontal_Player" + m_playerName);
         x = Input.GetAxis("MoveVertical_Player" + m_playerName);
 
@@ -66,18 +69,29 @@ public class PlayerController : MonoBehaviour
         ray.origin = transform.position;
         ray.direction = new Vector3(0, -1, 0);
         
-        Physics.Raycast(ray, boardTiles);
+        RaycastHit hitInfo;
 
-        if 
+        Physics.Raycast(ray, out hitInfo, 20.0f, boardTiles);
+        float deaccSpeed = 0.0f;
 
-
-        if (transform.position.y < 5.0f)
+        if (hitInfo.distance < 1.0f)
         {
             RotateTracks(x, z);
             MoveTank(x, z);
+            deaccSpeed = 50.0f;
         }
+        else
+            deaccSpeed = 5.0f;
+
         gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
 
+
+
+        if (m_currentSpeed > 0.0f && !m_moved)
+            m_currentSpeed -= deaccSpeed * Time.deltaTime;
+        else if (m_currentSpeed < 0.0f && !m_moved)
+            m_currentSpeed += deaccSpeed * Time.deltaTime;
+        
         RotateTurret();
         Shoot();
        
@@ -108,29 +122,26 @@ public class PlayerController : MonoBehaviour
 
     private void MoveTank(float x, float z)
     {
-        if (Input.GetAxis("LTrigger_Player" + m_playerName) > 0)
+        if (Input.GetAxis("RTrigger_Player" + m_playerName) > 0)
         {
-            if (m_currentSpeed < m_maxSpeed)
+            if (m_currentSpeed > -m_maxSpeed)
                 m_currentSpeed -= m_acceleration * Time.deltaTime;
 
-            //gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
             m_oldX = x;
             m_oldZ = z;
+
+            m_moved = true;
         }
-        else if (Input.GetAxis("RTrigger_Player" + m_playerName) < 0)
+        else if (Input.GetAxis("LTrigger_Player" + m_playerName) < 0)
         {
             if (m_currentSpeed < m_maxSpeed)
                 m_currentSpeed += m_acceleration * Time.deltaTime;
 
-            //gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
             m_oldX = x;
             m_oldZ = z;
-        }
 
-        //if (transform.position.y < 10.0f)
-        //    
-        //else
-        //    gameObject.transform.position += new Vector3(transform.forward.x, 0, transform.forward.z) * m_currentSpeed * Time.deltaTime;
+            m_moved = true;
+        }
     }
 
     void RotateTurret()

@@ -184,7 +184,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 402894, guid: dbd77096346c54c46b72f4e574d6b6c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 402894, guid: dbd77096346c54c46b72f4e574d6b6c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -209,14 +209,6 @@ Prefab:
     - target: {fileID: 402894, guid: dbd77096346c54c46b72f4e574d6b6c1, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402894, guid: dbd77096346c54c46b72f4e574d6b6c1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 402894, guid: dbd77096346c54c46b72f4e574d6b6c1, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbd77096346c54c46b72f4e574d6b6c1, type: 2}
@@ -303,6 +295,22 @@ Prefab:
     - target: {fileID: 111640, guid: b7e62ca7cf3ded643aadc977a63dfa91, type: 2}
       propertyPath: m_Name
       value: tank_threads
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467080, guid: b7e62ca7cf3ded643aadc977a63dfa91, type: 2}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467080, guid: b7e62ca7cf3ded643aadc977a63dfa91, type: 2}
+      propertyPath: m_Mass
+      value: 50000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479286, guid: b7e62ca7cf3ded643aadc977a63dfa91, type: 2}
+      propertyPath: m_maxSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479286, guid: b7e62ca7cf3ded643aadc977a63dfa91, type: 2}
+      propertyPath: m_acceleration
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7e62ca7cf3ded643aadc977a63dfa91, type: 2}
