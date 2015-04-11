@@ -61,8 +61,13 @@ public class PlayerController : MonoBehaviour
         z = Input.GetAxis("MoveHorizontal_Player" + m_playerName);
         x = Input.GetAxis("MoveVertical_Player" + m_playerName);
 
-        RotateTracks(x, z);
-        MoveTank(x, z);
+        if (transform.position.y < 5.0f)
+        {
+            RotateTracks(x, z);
+            MoveTank(x, z);
+        }
+        gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
+
         RotateTurret();
         Shoot();
        
@@ -96,9 +101,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("LTrigger_Player" + m_playerName) > 0)
         {
             if (m_currentSpeed < m_maxSpeed)
-                m_currentSpeed += m_acceleration * Time.deltaTime;
+                m_currentSpeed -= m_acceleration * Time.deltaTime;
 
-            gameObject.transform.position -= transform.forward * m_currentSpeed * Time.deltaTime;
+            //gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
             m_oldX = x;
             m_oldZ = z;
         }
@@ -107,12 +112,15 @@ public class PlayerController : MonoBehaviour
             if (m_currentSpeed < m_maxSpeed)
                 m_currentSpeed += m_acceleration * Time.deltaTime;
 
-            gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
+            //gameObject.transform.position += transform.forward * m_currentSpeed * Time.deltaTime;
             m_oldX = x;
             m_oldZ = z;
         }
 
-       
+        //if (transform.position.y < 10.0f)
+        //    
+        //else
+        //    gameObject.transform.position += new Vector3(transform.forward.x, 0, transform.forward.z) * m_currentSpeed * Time.deltaTime;
     }
 
     void RotateTurret()
