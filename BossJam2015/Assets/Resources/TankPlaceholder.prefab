@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11470426}
   m_Layer: 0
   m_Name: TankPlaceholder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ GameObject:
   - 136: {fileID: 13655954}
   - 23: {fileID: 2331132}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140532}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
-  m_LocalPosition: {x: .493000001, y: .691999972, z: 0}
+  m_LocalPosition: {x: .49000001, y: .50999999, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 483680}
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.69999981, y: -.5, z: 1.53999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 461008}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1317a25736c544a7ccb56f69bdac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 0
+  bullet: {fileID: 108174, guid: 30fa57bf456d48743a0816b838b97b54, type: 2}
 --- !u!136 &13655954
 CapsuleCollider:
   m_ObjectHideFlags: 1
