@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
         shit = m_turret.transform.rotation;
 	}
 
+    public void SetPlayerTag(string tag)
+    {
+        m_turret.tag = tag;
+        this.tag = tag;
+    }
+
     static public GameObject GetChildGameObject(GameObject fromGameObject, string withName)
     {
         //Author: Isaac Dart, June-13.
@@ -91,43 +97,18 @@ public class PlayerController : MonoBehaviour
 
     void RotateTurret()
     {
-        //m_turret.transform.RotateAround(transform.position, new Vector3(0, 1, 0), m_rotationSpeed * Time.deltaTime);
-
         float xRot = Input.GetAxis("TargetHorizontal_Player" + m_playerName);
         float yRot = Input.GetAxis("TargetVertical_Player" + m_playerName);
-        float rotation_threshold = 0.5f;
+        float rotation_threshold = 0.1f;
 
         if (Mathf.Abs(xRot) > rotation_threshold || Mathf.Abs(yRot) > rotation_threshold)
         {
-            Vector3 direction = new Vector3(-xRot, 0.0f, yRot).normalized;
-            float angle = Mathf.Atan2(yRot, xRot) * Mathf.Rad2Deg;
-            //´//float angle = Vector3.Angle(direction, transform.forwar)
-        
-            m_turret.transform.RotateAround(transform.position, new Vector3(0, 1, 0), angle * m_rotationSpeed * Time.deltaTime); 
-            //Quaternion.
+            Vector3 direction = new Vector3(xRot, 0.0f, yRot).normalized;
+            Vector3 crossDir = -Vector3.Cross(direction, new Vector3(0, 1, 0));
+            Quaternion derp = Quaternion.Slerp(m_turret.transform.rotation, Quaternion.LookRotation(crossDir, new Vector3(0, 1, 0)), m_rotationSpeed * Time.deltaTime);
+            m_turret.transform.rotation = derp;
         }
-      
 
-
-       //Vector3 oldPos = m_turret.transform.position;
-       //m_turret.transform.position = transform.position;
-
-        //m_turret.transform.position = transform.localPosition;
-        
-        //if (Mathf.Abs(xRot) > rotation_threshold || Mathf.Abs(yRot) > rotation_threshold)
-        //{
-        //    Vector3 direction = new Vector3(-xRot, 0.0f, yRot).normalized;
-        //    m_turret.
-        //    Quaternion derp = Quaternion.Slerp(m_turret.transform.rotation, Quaternion.LookRotation(direction, new Vector3(0, 1, 0)), m_rotationSpeed * Time.deltaTime);
-        //    m_turret.transform.rotation = derp;
-        //}
-
-        
-
-        //shit = m_turret.transform.rotation;
-        //m_turret.transform.rotation = transform.rotation;
-
-        //m_turret.transform.position = oldPos;
     }
 
     void RotateTracks(float x, float z)
