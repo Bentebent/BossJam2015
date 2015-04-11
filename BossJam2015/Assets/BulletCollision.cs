@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletCollision : MonoBehaviour {
+public class BulletCollision : MonoBehaviour 
+{
+	public 
 
 	void OnTriggerEnter(Collider other)
 	{
-		Destroy(gameObject);
-		Debug.Log("Entering object!");
+		// Hitting anything apart from its parent will destroy the bullet.
+		if (other.tag != GetComponent<BulletBehaviour>().ParentTag)
+		{
+			Destroy(gameObject);
+		}
 	}
 }

@@ -6,6 +6,7 @@ public class BulletBehaviour : MonoBehaviour
 
 	public float speed;
 	private Vector3 mDirection;
+	private string mParentTag;
 
 	// Use this for initialization
 	void Start () 
@@ -23,5 +24,11 @@ public class BulletBehaviour : MonoBehaviour
 	{
 		get { return mDirection; }
 		set { mDirection = value; }
+	}
+
+	public string ParentTag
+	{
+		get { return mParentTag; }
+		set { mParentTag = value; }
 	}
 }

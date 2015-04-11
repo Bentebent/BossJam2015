@@ -26,7 +26,9 @@ public class Movement : MonoBehaviour
             Transform child = transform.Find("Turret");
 			if (child != null)
 			{
-				newBullet.GetComponent<BulletBehaviour>().Direction = new Vector3(1.0f, 0.0f, 0.0f);
+				BulletBehaviour bulletInfo = newBullet.GetComponent<BulletBehaviour>();
+				bulletInfo.Direction = new Vector3(1.0f, 0.0f, 0.0f);
+				bulletInfo.ParentTag = gameObject.tag;
 				newBullet.transform.position = child.position;
 			}
 			else
