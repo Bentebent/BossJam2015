@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
     float m_speedBoost = 1.0f;
     float m_speedBoostTimer = -1.0f;
 
+    float m_lightTimer = 0.0f;
+
+    Light m_spotLight;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -77,11 +81,19 @@ public class PlayerController : MonoBehaviour
         m_playerTags.Add("Player3");
         m_playerTags.Add("Player4");
 
+        m_spotLight = m_turret.transform.Find("spotlight").gameObject.GetComponent<Light>();
+        m_spotLight.intensity = 0.0f;
+
 	}
 
     public void SetPlayerTag(string tag)
     {
-        m_turret.tag = tag;
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            child.gameObject.tag = tag;
+        }
+
         this.tag = tag;
     }
 
@@ -172,9 +184,13 @@ public class PlayerController : MonoBehaviour
         Shoot();
 
         m_speedBoostTimer -= Time.deltaTime;
+        m_lightTimer -= Time.deltaTime;
 
         if (m_speedBoostTimer <= 0.0f)
             m_speedBoost = 1.0f;
+        if (m_lightTimer <= 0.0f)
+            m_spotLight.intensity = 0.0f;
+
        
 	}
 
@@ -193,6 +209,8 @@ public class PlayerController : MonoBehaviour
             newBullet.transform.position = m_turret.transform.position + bulletInfo.Direction;
             newBullet.transform.forward = m_turret.transform.forward;
             m_shotTimer = m_shotLimit;
+            m_lightTimer = 0.05f;
+            m_spotLight.intensity = 100.0f;
         }
 
         if (Input.GetButtonDown("LBumper_Player" + m_playerName) && m_ammoCount > 0)

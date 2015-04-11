@@ -9,17 +9,33 @@ public class Main : MonoBehaviour
 
 	private Vector2 mWorldHalfWidth;
 
+    SelectionMenu mSelectionMenu;
+
+    bool mSpawningPlayers;
+    bool mGameplay;
+
 	// Use this for initialization
 	void Start () 
 	{
+
+        mSelectionMenu = new SelectionMenu();
 		SetupWorld();
 		SetupPlayerSpawns();
 
+        mSpawningPlayers = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+        if (mSpawningPlayers)
+        {
+            mSelectionMenu.Update();
+        }
+        else if (mGameplay)
+        {
+
+        }
 		// Keep time.
 	}
 

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>27</author>
+      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.4.1;  Revision: exported;  Platform: x64;  Configuration: Release_Max2013_static</authoring_tool>
+      <source_data>file:///C:/Users/27/Documents/Riot_3ds_Max_Assets/scenes/garbage.max</source_data>
+    </contributor>
+    <created>2014-02-28T15:27:41</created>
+    <modified>2014-02-28T15:27:41</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="_9_-_Default">
+      <profile_COMMON>
+        <newparam sid="crate_01-diffuse_png-surface">
+          <surface type="2D">
+            <init_from>crate_01-diffuse_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="crate_01-diffuse_png-sampler">
+          <sampler2D>
+            <source>crate_01-diffuse_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0.5882353 0.5882353 0.5882353 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="crate_01-diffuse_png-sampler" texcoord="CHANNEL1"/>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>0</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+          <extra>
+            <technique profile="OpenCOLLADA3dsMax">
+              <bump bumptype="HEIGHTFIELD">
+                <texture texture="crate_01-diffuse_png-sampler" texcoord="CHANNEL1"/>
+              </bump>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="OpenCOLLADA3dsMax">
+          <extended_shader>
+            <apply_reflection_dimming>0</apply_reflection_dimming>
+            <dim_level>0</dim_level>
+            <falloff_type>0</falloff_type>
+            <index_of_refraction>1.5</index_of_refraction>
+            <opacity_type>0</opacity_type>
+            <reflection_level>3</reflection_level>
+            <wire_size>1</wire_size>
+            <wire_units>0</wire_units>
+          </extended_shader>
+          <shader>
+            <ambient_diffuse_lock>1</ambient_diffuse_lock>
+            <ambient_diffuse_texture_lock>1</ambient_diffuse_texture_lock>
+            <diffuse_specular_lock>0</diffuse_specular_lock>
+            <soften>0.1</soften>
+            <use_self_illum_color>0</use_self_illum_color>
+          </shader>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="_9_-_Default-material" name="_9_-_Default">
+      <instance_effect url="#_9_-_Default"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="geom-Crate_01" name="Crate_01">
+      <mesh>
+        <source id="geom-Crate_01-positions">
+          <float_array id="geom-Crate_01-positions-array" count="72">0.5 0.01000004 0.2 0.5 0.009999973 -0.2 0.5 0.31 0.2 0.5 0.31 -0.2 0.2703453 3.42133e-8 0.21 0.3203453 3.42133e-8 0.21 0.2703453 -3.42133e-8 -0.21 0.3203453 -3.42133e-8 -0.21 0.2703453 0.32 0.2099999 0.3203453 0.32 0.2099999 0.2703453 0.32 -0.21 0.3203453 0.32 -0.21 -0.5 0.01000004 0.2 -0.5 0.009999973 -0.2 -0.5 0.31 -0.2 -0.5 0.31 0.2 -0.2703453 3.42133e-8 0.21 -0.2703453 -3.42133e-8 -0.21 -0.3203453 -3.42133e-8 -0.21 -0.3203453 3.42133e-8 0.21 -0.2703453 0.32 0.2099999 -0.3203453 0.32 0.2099999 -0.3203453 0.32 -0.21 -0.2703453 0.32 -0.21</float_array>
+          <technique_common>
+            <accessor source="#geom-Crate_01-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Crate_01-normals">
+          <float_array id="geom-Crate_01-normals-array" count="216">1 0 0 1 0 0 1 0 0 0 -0.9999999 1.62921e-7 0 -0.9999999 1.62921e-7 0 -1 1.62921e-7 0 0.9999999 -1.41916e-7 0 0.9999999 -1.41916e-7 0 1 -1.41916e-7 0 1.39698e-7 1 0 1.39698e-7 1 0 1.39698e-7 1 0.9999999 0 0 1 0 0 1 0 0 0 -1.39698e-7 -1 0 -1.39698e-7 -1 0 -1.39698e-7 -1 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 -1.49012e-7 -1 0 -1.49012e-7 -0.9999999 0 -1.49012e-7 -0.9999999 0 -0.9999999 1.62921e-7 0 -0.9999999 1.62921e-7 0 -1 1.62921e-7 0 0.9999999 -1.41916e-7 0 0.9999999 -1.41916e-7 0 1 -1.41916e-7 0 1.39698e-7 1 0 1.39698e-7 1 0 1.39698e-7 1 -0.9999999 0 0 -1 0 0 -1 0 0 0 -1.39698e-7 -1 0 -1.39698e-7 -1 0 -1.39698e-7 -1 1 0 0 1 0 0 1 0 0 0 -1 1.62981e-7 0 -1 1.62981e-7 0 -1 1.62981e-7 0 1 -1.49012e-7 0 1 -1.49012e-7 0 1 -1.49012e-7 0 1.49012e-7 1 0 1.49012e-7 0.9999999 0 1.49012e-7 0.9999999 1 0 0 0 -1 1.62921e-7 0 1 -1.41916e-7 0 1.39698e-7 1 1 0 0 0 -1.39698e-7 -1 -1 0 0 -1 0 0 0 -1.49012e-7 -1 0 -1 1.62921e-7 0 1 -1.41916e-7 0 1.39698e-7 1 -1 0 0 0 -1.39698e-7 -1 1 0 0 0 -1 1.62981e-7 0 1 -1.49012e-7 0 1.49012e-7 1</float_array>
+          <technique_common>
+            <accessor source="#geom-Crate_01-normals-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Crate_01-map1">
+          <float_array id="geom-Crate_01-map1-array" count="216">1 0 0 1 0.4000001 0 1 0 0 1 0.4000001 0 1 0.05000002 0 1 0.3500001 0 0 0.444549 0 0.4135102 0.444549 0 0.4135102 0.7546817 0 0 0.7546817 0 1 0.05000002 0 1 0.3500001 0 0.4580592 0.444549 0 0.8780594 0.444549 0 0.8780594 0.494549 0 0.4580592 0.494549 0 0.8780594 0.444549 0 0.8780594 0.494549 0 0.4580592 0.494549 0 0.4580592 0.444549 0 0.8280593 0.444549 0 0.8280593 0.494549 0 0.5080593 0.494549 0 0.5080593 0.444549 0 0 0.444549 0 0.4135102 0.444549 0 0.4135102 0.7596044 0 0 0.7596044 0 0.8280593 0.444549 0 0.8280593 0.494549 0 0.5080593 0.494549 0 0.5080593 0.444549 0 0 0.444549 0 0.4135102 0.444549 0 0.4135102 0.7596044 0 0 0.7596044 0 0.4135102 0.444549 0 0.4135102 0.7546817 0 0 0.7546817 0 0 0.444549 0 0 0.3500001 0 0 0.05000002 0 0.4580592 0.494549 0 0.4580592 0.444549 0 0.8780594 0.444549 0 0.8780594 0.494549 0 0.8780594 0.494549 0 0.4580592 0.494549 0 0.4580592 0.444549 0 0.8780594 0.444549 0 0.8280593 0.494549 0 0.5080593 0.494549 0 0.5080593 0.444549 0 0.8280593 0.444549 0 0.4135102 0.444549 0 0.4135102 0.7596044 0 0 0.7596044 0 0 0.444549 0 0.8280593 0.494549 0 0.5080593 0.494549 0 0.5080593 0.444549 0 0.8280593 0.444549 0 0.4135102 0.444549 0 0.4135102 0.7596044 0 0 0.7596044 0 0 0.444549 0 0 0.4000001 0 0 0 0 0 0.4000001 0 0 0 0 0 0.3500001 0 0 0.05000002 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Crate_01-map1-array" count="72" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Crate_01-map1-textangents">
+          <float_array id="geom-Crate_01-map1-textangents-array" count="216">0 -1.55997e-7 -1 0 -1.55997e-7 -1 0 -1.49012e-7 -1 0 -1.62921e-7 -1 0 -1.62921e-7 -1 0 -1.62921e-7 -1 0 1.41916e-7 1 0 1.41916e-7 1 0 1.41916e-7 1 0 -1 1.39698e-7 0 -1 1.39698e-7 0 -1 1.39698e-7 0 -1.52418e-7 -1 0 -1.52418e-7 -1 0 -1.41916e-7 -1 0 -1 1.39698e-7 0 -1 1.39698e-7 0 -1 1.39698e-7 0 1.52418e-7 1 0 1.52418e-7 1 0 1.41916e-7 1 0 1.55997e-7 1 0 1.55997e-7 1 0 1.62981e-7 1 -1 0 0 -1 0 0 -1 0 0 0 -1.62921e-7 -1 0 -1.62921e-7 -1 0 -1.62921e-7 -1 0 1.41916e-7 1 0 1.41916e-7 1 0 1.41916e-7 1 0 -1 1.39698e-7 0 -1 1.39698e-7 0 -1 1.39698e-7 0 1.52418e-7 1 0 1.52418e-7 1 0 1.62921e-7 1 0 -1 1.39698e-7 0 -1 1.39698e-7 0 -1 1.39698e-7 0 -1.52418e-7 -1 0 -1.52418e-7 -1 0 -1.62921e-7 -1 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0 -1.62981e-7 -1 0 -1.62921e-7 -1 0 1.41916e-7 1 0 -1 1.39698e-7 0 -1.62921e-7 -1 0 -1 1.39698e-7 0 1.62921e-7 1 0 1.49012e-7 1 -1 0 0 0 -1.62921e-7 -1 0 1.41916e-7 1 0 -1 1.39698e-7 0 1.41916e-7 1 0 -1 1.39698e-7 0 -1.41916e-7 -1 1 0 0 1 0 0 1 0 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Crate_01-map1-textangents-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Crate_01-map1-texbinormals">
+          <float_array id="geom-Crate_01-map1-texbinormals-array" count="216">0 -1 1.55997e-7 0 -1 1.55997e-7 0 -1 1.49012e-7 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 -1 1.52418e-7 0 -1 1.52418e-7 0 -1 1.41916e-7 1 0 0 1 0 0 1 0 0 0 -1 1.52418e-7 0 -1 1.52418e-7 0 -1 1.41916e-7 0 -1 1.55997e-7 0 -1 1.55997e-7 0 -1 1.62981e-7 0 -1 1.49012e-7 0 -1 1.49012e-7 0 -1 1.49012e-7 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 -1 1.52418e-7 0 -1 1.52418e-7 0 -1 1.62921e-7 1 0 0 1 0 0 1 0 0 0 -1 1.52418e-7 0 -1 1.52418e-7 0 -1 1.62921e-7 0 -1.62981e-7 -1 0 -1.62981e-7 -1 0 -1.62981e-7 -1 0 1.49012e-7 1 0 1.49012e-7 1 0 1.49012e-7 1 0 -1 1.49012e-7 0 -1 1.49012e-7 0 -1 1.49012e-7 0 -1 1.62981e-7 -1 0 0 -1 0 0 -1 0 0 0 -1 1.62921e-7 1 0 0 0 -1 1.62921e-7 0 -1 1.49012e-7 0 -1 1.49012e-7 -1 0 0 -1 0 0 -1 0 0 0 -1 1.41916e-7 1 0 0 0 -1 1.41916e-7 0 -1.62981e-7 -1 0 1.49012e-7 1 0 -1 1.49012e-7</float_array>
+          <technique_common>
+            <accessor source="#geom-Crate_01-map1-texbinormals-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-Crate_01-vertices">
+          <input semantic="POSITION" source="#geom-Crate_01-positions"/>
+        </vertices>
+        <triangles material="_9_-_Default_1" count="36">
+          <input semantic="VERTEX" source="#geom-Crate_01-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-Crate_01-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-Crate_01-map1" offset="2" set="0"/>
+          <input semantic="TEXTANGENT" source="#geom-Crate_01-map1-textangents" offset="3" set="1"/>
+          <input semantic="TEXBINORMAL" source="#geom-Crate_01-map1-texbinormals" offset="3" set="1"/>
+          <p>0 0 6 0 3 1 8 1 2 2 9 2 4 3 12 3 7 4 14 4 5 5 15 5 8 6 16 6 11 7 18 7 10 8 19 8 4 9 20 9 9 10 22 10 8 11 23 11 5 12 24 12 11 13 26 13 9 14 27 14 7 15 28 15 10 16 30 16 11 17 31 17 6 18 32 18 8 19 34 19 10 20 35 20 12 21 36 21 14 22 38 22 13 23 39 23 13 24 10 24 14 25 11 25 1 26 41 26 16 27 42 27 18 28 44 28 17 29 45 29 20 30 46 30 22 31 48 31 21 32 49 32 16 33 50 33 21 34 52 34 19 35 53 35 19 36 54 36 22 37 56 37 18 38 57 38 18 39 58 39 23 40 60 40 17 41 61 41 17 42 62 42 20 43 64 43 16 44 65 44 1 45 0 45 12 46 66 46 13 47 67 47 2 48 2 48 3 49 3 49 15 50 69 50 0 51 4 51 2 52 5 52 12 53 71 53 0 0 6 0 1 54 7 54 3 1 8 1 4 3 12 3 6 55 13 55 7 4 14 4 8 6 16 6 9 56 17 56 11 7 18 7 4 9 20 9 5 57 21 57 9 10 22 10 5 12 24 12 7 58 25 58 11 13 26 13 7 15 28 15 6 59 29 59 10 16 30 16 6 18 32 18 4 60 33 60 8 19 34 19 12 21 36 21 15 61 37 61 14 22 38 22 14 25 11 25 3 62 40 62 1 26 41 26 16 27 42 27 19 63 43 63 18 28 44 28 20 30 46 30 23 64 47 64 22 31 48 31 16 33 50 33 20 65 51 65 21 34 52 34 19 36 54 36 21 66 55 66 22 37 56 37 18 39 58 39 22 67 59 67 23 40 60 40 17 42 62 42 23 68 63 68 20 43 64 43 1 45 0 45 0 69 1 69 12 46 66 46 3 49 3 49 14 70 68 70 15 50 69 50 2 52 5 52 15 71 70 71 12 53 71 53</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
+      <technique_common>
+        <ambient>
+          <color>0 0 0</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="crate_01-diffuse_png">
+      <init_from>../../../../../../Riot_3ds_Max_Assets/sceneassets/images/crate_01-diffuse.png</init_from>
+    </image>
+  </library_images>
+  <library_visual_scenes>
+    <visual_scene id="MaxScene">
+      <node name="EnvironmentAmbientLight">
+        <instance_light url="#EnvironmentAmbientLight"/>
+      </node>
+      <node id="node-Crate_01" name="Crate_01">
+        <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#geom-Crate_01">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_9_-_Default_1" target="#_9_-_Default-material">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="OpenCOLLADA">
+            <cast_shadows>1</cast_shadows>
+            <primary_visibility>1</primary_visibility>
+            <receive_shadows>1</receive_shadows>
+            <secondary_visibility>1</secondary_visibility>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#MaxScene"/>
+  </scene>
+</COLLADA>

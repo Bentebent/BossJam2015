@@ -18,7 +18,7 @@ public class BulletCollision : MonoBehaviour
                 GameObject go = other.gameObject;
                 if (pc == null)
                 {
-                    while(true)
+                    while (true)
                     {
                         go = go.transform.parent.gameObject;
 
@@ -36,6 +36,8 @@ public class BulletCollision : MonoBehaviour
                     }
                 }
             }
+            else
+                Destroy(gameObject);
 		}
 	}
 }
