@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BulletCollision : MonoBehaviour 
 {
-	public 
-
 	void OnTriggerEnter(Collider other)
 	{
 		// Hitting anything apart from its parent will destroy the bullet.
