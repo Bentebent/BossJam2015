@@ -82,9 +82,31 @@ public class SelectionMenu
             return "tiger_";
     }
 
+    private string SH(string player)
+    {
+        if(Input.GetButtonDown("RBumper_Player" + player))
+        {
+            return "tiger";
+        }
+        else if (Input.GetButtonDown("LBumper_Player" + player))
+        {
+            return "dragon";
+        }
+        else if (Input.GetAxis("LTrigger_Player" + player) < 0)
+        {
+            return "bear";
+        }
+        else if (Input.GetAxis("RTrigger_Player" + player) > 0)
+        {
+            return "eagle";
+        }
+
+        return "empty";
+    }
+
     private void SwitchHead()
     {
-        if (Input.GetButtonDown("Start_PlayerOne") && mPlayerOneStarted)
+        if (Input.GetButtonDown("RBumper_PlayerOne") && mPlayerOneStarted)
         {
             mPOneTank = ST(mPOneTank);
 
@@ -95,7 +117,7 @@ public class SelectionMenu
             mPlayerOne = GameObject.Instantiate(go);
         }
 
-        if (Input.GetButtonDown("Start_PlayerTwo") && mPlayerTwoStarted)
+        if (Input.GetButtonDown("RBumper_PlayerTwo") && mPlayerTwoStarted)
         {
             mPTwoTank = ST(mPTwoTank);
             GameObject.DestroyImmediate(mPlayerTwo);
@@ -105,7 +127,7 @@ public class SelectionMenu
             mPlayerTwo = GameObject.Instantiate(go);
         }
 
-        if (Input.GetButtonDown("Start_PlayerThree") && mPlayerThreeStarted)
+        if (Input.GetButtonDown("RBumper_PlayerThree") && mPlayerThreeStarted)
         {
             mPThreeTank = ST(mPThreeTank);
             GameObject.DestroyImmediate(mPlayerThree);
@@ -115,7 +137,7 @@ public class SelectionMenu
             mPlayerThree = GameObject.Instantiate(go);
         }
 
-        if (Input.GetButtonDown("Start_PlayerFour") && mPlayerFourStarted)
+        if (Input.GetButtonDown("RBumper_PlayerFour") && mPlayerFourStarted)
         {
             mPFourTank = ST(mPFourTank);
             GameObject.DestroyImmediate(mPlayerFour);
