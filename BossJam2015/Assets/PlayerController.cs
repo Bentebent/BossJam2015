@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum SPECIAL_WEAPON
 {
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
     public SPECIAL_WEAPON m_specialWeapon = SPECIAL_WEAPON.NONE;
     public int m_ammoCount = 0;
 
+    List<string> m_playerTags;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -63,6 +66,13 @@ public class PlayerController : MonoBehaviour
         m_startRot = transform.rotation;
         m_turretStartPos = m_turret.transform.position;
         m_turretStartRot = m_turret.transform.rotation;
+
+        m_playerTags = new List<string>();
+        m_playerTags.Add("Player1");
+        m_playerTags.Add("Player2");
+        m_playerTags.Add("Player3");
+        m_playerTags.Add("Player4");
+
 	}
 
     public void SetPlayerTag(string tag)

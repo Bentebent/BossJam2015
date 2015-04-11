@@ -4,7 +4,7 @@ using System.Collections;
 public class Missile : MonoBehaviour 
 {
     public GameObject m_target;
-    public float m_speed = 20.0f;
+    public float m_speed = 150.0f;
 
     public float m_timer = 0.0f;
 
@@ -45,19 +45,18 @@ public class Missile : MonoBehaviour
         {
             float step = m_speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(0, 1, 0), step);
+            transform.LookAt(transform.position - new Vector3(0, 1, 0));
         }
         else if (m_timer < 4.0f)
         {
             float step = m_speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, m_target.transform.position, step);
-           
+            transform.LookAt(-m_target.transform.position);
         }
         else
         {
             Explode();
         }
-
-        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, m_target.transform.position, 9001.0f, 0.0f));
 
         m_timer += Time.deltaTime;
 	}
