@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundCollision : MonoBehaviour {
+public class GroundCollision : MonoBehaviour 
+{
 
 	void OnTriggerEnter(Collider other)
 	{
