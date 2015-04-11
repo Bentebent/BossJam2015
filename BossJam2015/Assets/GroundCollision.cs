@@ -8,7 +8,10 @@ public class GroundCollision : MonoBehaviour
 		if(other.tag == "Projectile")
 		{
 			Destroy(gameObject);
-			Debug.Log("Bullet colliding with ground!");
+		}
+		else if (other.tag == "Mine")
+		{
+			Destroy(gameObject);
 		}
 	}
 }
