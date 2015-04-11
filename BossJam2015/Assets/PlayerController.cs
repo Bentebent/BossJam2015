@@ -25,12 +25,32 @@ public class PlayerController : MonoBehaviour
     private float m_shotTimer = 0.0f;
 
     private bool m_moved = false;
+    public bool m_dead = false;
+
+    public Rigidbody m_rigidBody;
+    public Rigidbody m_turretRB;
+
+    public Vector3 m_contactPoint;
+
+    public int m_lives = 10;
+
+    private Vector3 m_startPos;
+    private Quaternion m_startRot;
+    private Vector3 m_turretStartPos;
+    private Quaternion m_turretStartRot;
 
 	// Use this for initialization
 	void Start () 
     {
         m_turret = GetChildGameObject(this.gameObject, "tank_turret");
-        shit = m_turret.transform.rotation;
+        m_rigidBody = GetComponent<Rigidbody>();
+        m_turretRB = m_turret.GetComponent<Rigidbody>();
+
+
+        m_startPos = transform.position;
+        m_startRot = transform.rotation;
+        m_turretStartPos = m_turret.transform.position;
+        m_turretStartRot = m_turret.transform.rotation;
 	}
 
     public void SetPlayerTag(string tag)
@@ -52,10 +72,38 @@ public class PlayerController : MonoBehaviour
     {
         return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
     }
+
+    public void ResetMe()
+    {
+        m_turret.transform.parent = gameObject.transform;
+        m_rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        m_turretRB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        m_turretRB.useGravity = false;
+        m_turretRB.isKinematic = true;
+
+        m_turretRB.velocity = Vector3.zero;
+        m_turretRB.angularVelocity = Vector3.zero;
+        m_rigidBody.velocity = Vector3.zero;
+        m_rigidBody.angularVelocity = Vector3.zero;
+
+        transform.position = m_startPos;
+        transform.rotation = m_startRot;
+
+        m_turret.transform.position = m_turretStartPos;
+        m_turret.transform.rotation = m_turretStartRot;
+
+        m_dead = false;
+    }
 	
 	// Update is called once per frame
 	void Update () 
     {
+        //UR DED LOL
+        if (m_dead && Input.GetButtonDown("RBumper_Player" + m_playerName))
+            ResetMe();
+        else if (m_dead)
+            return;
+
         float x = 0;
         float z = 0;
 
@@ -120,9 +168,111 @@ public class PlayerController : MonoBehaviour
         
     }
 
+        
+	void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+        }
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (m_dead)
+            return;
+
+        if (collision.gameObject.tag == "Projectile")
+        {
+        }
+        else if (collision.gameObject.tag == "Player1" 
+            || collision.gameObject.tag == "Player2"
+            || collision.gameObject.tag == "Player3"
+            || collision.gameObject.tag == "Player4")
+        {
+            PlayerController colliderPC = collision.gameObject.GetComponent<PlayerController>();
+
+            if (colliderPC != null)
+            {
+                Vector3 v = transform.forward * m_currentSpeed;
+                v = Vector3.Normalize(v);
+
+                Vector3 vv = colliderPC.gameObject.transform.position - transform.position;
+                vv = Vector3.Normalize(vv);
+
+                float ab = Vector3.Angle(v, vv);
+
+                bool killCollider = false;
+                bool killMe = false;
+
+                if (ab < 45.0f)
+                {
+                    if (m_currentSpeed > 20.0f || m_currentSpeed < -20.0f)
+                    {
+                        killCollider = true;
+                    }
+                }
+
+               v = colliderPC.gameObject.transform.forward * colliderPC.m_currentSpeed;
+               v = Vector3.Normalize(v);
+
+               vv = transform.position - colliderPC.gameObject.transform.position;
+               vv = Vector3.Normalize(vv);
+
+               ab = Vector3.Angle(v, vv);
+
+               if (ab < 45.0f)
+               {
+                   if (colliderPC.m_currentSpeed > 20.0f || colliderPC.m_currentSpeed < -20.0f)
+                   {
+                       killMe = true;
+                   }
+               }
+
+               ContactPoint contact = collision.contacts[0];
+               m_contactPoint = contact.point;
+                if (killMe)
+                {
+                    BounceMe();
+                }
+
+                if (killCollider)
+                {
+                    colliderPC.m_turret.transform.parent = null;
+
+                    colliderPC.m_rigidBody.constraints = RigidbodyConstraints.None;
+                    colliderPC.m_turretRB.constraints = RigidbodyConstraints.None;
+                    colliderPC.m_turretRB.useGravity = true;
+                    colliderPC.m_turretRB.isKinematic = false;
+
+                    colliderPC.m_rigidBody.AddExplosionForce(1000.0f, contact.point, 100.0f);
+                    colliderPC.m_turretRB.AddExplosionForce(1000.0f, contact.point, 100.0f);
+                    colliderPC.m_dead = true;
+                }
+
+            }
+           
+        }
+    }
+
+    public void BounceMe()
+    {
+        Debug.Log(tag + " BOUNCED");
+        m_turret.transform.parent = null;
+
+        m_rigidBody.constraints = RigidbodyConstraints.None;
+        m_turretRB.constraints = RigidbodyConstraints.None;
+        m_turretRB.useGravity = true;
+        m_turretRB.isKinematic = false;
+
+        m_rigidBody.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
+        m_turretRB.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
+        m_dead = true;
+    }
+
     private void MoveTank(float x, float z)
     {
-        if (Input.GetAxis("RTrigger_Player" + m_playerName) > 0)
+        if (Input.GetAxis("LTrigger_Player" + m_playerName) < 0)
         {
             if (m_currentSpeed > -m_maxSpeed)
                 m_currentSpeed -= m_acceleration * Time.deltaTime;
@@ -132,7 +282,7 @@ public class PlayerController : MonoBehaviour
 
             m_moved = true;
         }
-        else if (Input.GetAxis("LTrigger_Player" + m_playerName) < 0)
+        else if (Input.GetAxis("RTrigger_Player" + m_playerName) > 0)
         {
             if (m_currentSpeed < m_maxSpeed)
                 m_currentSpeed += m_acceleration * Time.deltaTime;

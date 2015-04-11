@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 454426}
   - 33: {fileID: 3388924}
-  - 135: {fileID: 13512346}
   - 23: {fileID: 2322772}
   - 114: {fileID: 11466362}
   - 114: {fileID: 11445168}
+  - 65: {fileID: 6550430}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Projectile
@@ -63,6 +63,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108174}
   m_Mesh: {fileID: 4300000, guid: cf1ee67b9c1df70458d4df5d2f6fa6f1, type: 3}
+--- !u!65 &6550430
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108174}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .129719317, y: 1, z: .338906139}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11445168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,18 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
---- !u!135 &13512346
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108174}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
