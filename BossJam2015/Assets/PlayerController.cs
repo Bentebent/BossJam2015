@@ -1,8 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum SPECIAL_WEAPON
+{
+    NONE,
+    MINE,
+    MISSILE,
+    COUNT
+}
+
 public class PlayerController : MonoBehaviour 
 {
+  
     public float m_maxSpeed;
     public float m_acceleration;
     public float m_currentSpeed;
@@ -38,6 +47,9 @@ public class PlayerController : MonoBehaviour
     private Quaternion m_startRot;
     private Vector3 m_turretStartPos;
     private Quaternion m_turretStartRot;
+
+    public SPECIAL_WEAPON m_specialWeapon = SPECIAL_WEAPON.NONE;
+    public int m_ammoCount = 0;
 
 	// Use this for initialization
 	void Start () 
@@ -161,6 +173,29 @@ public class PlayerController : MonoBehaviour
             newBullet.transform.forward = m_turret.transform.forward;
             m_shotTimer = m_shotLimit;
         }
+
+        if (Input.GetButtonDown("LBumper_Player" + m_playerName) && m_ammoCount > 0)
+        {
+            m_ammoCount -= 1;
+
+            if (m_specialWeapon == SPECIAL_WEAPON.MINE)
+            {
+                GameObject go = (GameObject)Instantiate(Resources.Load("Mine"));
+
+                go.transform.position = transform.position + transform.forward.normalized * 5.0f;
+                
+
+            }
+            else if (m_specialWeapon == SPECIAL_WEAPON.MISSILE)
+            {
+                GameObject go = (GameObject)Instantiate(Resources.Load("Missile"));
+                go.transform.position = transform.position + transform.forward.normalized;
+
+                GameObject target = GameObject.FindGameObjectWithTag("Player1");
+                Missile m = go.GetComponent<Missile>();
+                m.m_target = target;
+            }
+        }
     }
 
     void LateUpdate()
@@ -171,11 +206,20 @@ public class PlayerController : MonoBehaviour
         
 	void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Projectile")
+        if (other.gameObject.tag == "Mine")
         {
+            BounceMe();
+        }
+        else if (other.gameObject.tag == "Missile")
+        {
+            Missile m = other.gameObject.GetComponent<Missile>();
+
+            if (m.m_timer > 1.0f)
+            {
+                BounceMe();
+            }
         }
     }
-
 
     void OnCollisionEnter(Collision collision)
     {

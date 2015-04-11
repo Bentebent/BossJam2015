@@ -49,6 +49,8 @@ public class MineBehaviour : MonoBehaviour {
 			Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 10.0f);
 			Collider thisCollider = gameObject.GetComponent<Collider>();
 
+            //tag = "ExplodingMine";
+
 			for (int i = 0; i < hitColliders.Length; ++i)
 			{
 				if (hitColliders[i] != thisCollider)

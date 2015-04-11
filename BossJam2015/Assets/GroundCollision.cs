@@ -9,9 +9,19 @@ public class GroundCollision : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		else if (other.tag == "Mine")
+        else if (other.tag == "Mine")
 		{
 			Destroy(gameObject);
 		}
+        else if (other.tag == "Missile")
+        {
+            Missile m = other.gameObject.GetComponent<Missile>();
+
+            if (m.m_timer > 1.0f)
+            {
+                Destroy(gameObject);
+            }
+           
+        }
 	}
 }
