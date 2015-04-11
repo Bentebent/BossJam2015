@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_turretOffset = new Vector3(0.01f, -0.02f, 1.367f);
     private Quaternion shit;
 
+    private float m_shotLimit = 1.0f;
+    private float m_shotTimer = 0.0f;
+
 
 	// Use this for initialization
 	void Start () 
@@ -60,15 +63,32 @@ public class PlayerController : MonoBehaviour
 
         RotateTracks(x, z);
         MoveTank(x, z);
-
+        RotateTurret();
+        Shoot();
        
 	}
 
+    void Shoot()
+    {
+        m_shotTimer -= Time.deltaTime;
+
+        if (Input.GetButtonDown("RBumper_Player" + m_playerName) && m_shotTimer <= 0.0f)
+        {
+            // Shoot
+            GameObject newBullet = (GameObject)Instantiate(Resources.Load("Bullet"));
+
+            BulletBehaviour bulletInfo = newBullet.GetComponent<BulletBehaviour>();
+            bulletInfo.Direction = -m_turret.transform.forward;
+            bulletInfo.ParentTag = gameObject.tag;
+            newBullet.transform.position = m_turret.transform.position + bulletInfo.Direction;
+            newBullet.transform.forward = m_turret.transform.forward;
+            m_shotTimer = m_shotLimit;
+        }
+    }
+
     void LateUpdate()
     {
-        m_turret.transform.parent = null;
-        RotateTurret();
-        m_turret.transform.parent = transform;
+        
     }
 
     private void MoveTank(float x, float z)
