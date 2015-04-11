@@ -5,20 +5,35 @@ public class BulletCollision : MonoBehaviour
 {
 	void OnTriggerEnter(Collider other)
 	{
+        BulletBehaviour b = GetComponent<BulletBehaviour>();
 		// Hitting anything apart from its parent will destroy the bullet.
-        if (other.tag != GetComponent<BulletBehaviour>().ParentTag)
+        if (other.tag != b.ParentTag)
 		{
             if (other.gameObject.tag == "Player1"
             || other.gameObject.tag == "Player2"
             || other.gameObject.tag == "Player3"
             || other.gameObject.tag == "Player4")
             {
-                if (other.gameObject.GetComponent<PlayerController>() != null)
+                PlayerController pc = other.gameObject.GetComponent<PlayerController>();
+                GameObject go = other.gameObject;
+                if (pc == null)
                 {
-                    PlayerController pc = other.gameObject.GetComponent<PlayerController>();
-            
-                    pc.BounceMe();
-                    Destroy(gameObject);
+                    while(true)
+                    {
+                        go = go.transform.parent.gameObject;
+
+                        if (go == null)
+                            break;
+                        else
+                            pc = go.GetComponent<PlayerController>();
+
+                        if (pc != null)
+                        {
+                            pc.BounceMe();
+                            Destroy(gameObject);
+                            break;
+                        }
+                    }
                 }
             }
 		}

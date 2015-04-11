@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     List<string> m_playerTags;
 
-    float m_speedBoost = 0.0f;
+    float m_speedBoost = 1.0f;
     float m_speedBoostTimer = -1.0f;
 
 	// Use this for initialization
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         
         RaycastHit hitInfo;
 
-        Physics.Raycast(ray, out hitInfo, 20.0f, boardTiles);
+        Physics.Raycast(ray, out hitInfo, 3.0f, boardTiles);
         float deaccSpeed = 0.0f;
 
         if (hitInfo.distance < 1.0f)
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
         m_speedBoostTimer -= Time.deltaTime;
 
         if (m_speedBoostTimer <= 0.0f)
-            m_speedBoost = 0.0f;
+            m_speedBoost = 1.0f;
        
 	}
 
@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour
             else if (m_specialWeapon == SPECIAL_WEAPON.SPEED_BOOST && m_speedBoostTimer < 0.0f)
             {
                 m_speedBoostTimer = 5.0f;
-                m_speedBoost = 10.0f;
+                m_speedBoost = 2.0f;
             }
         }
     }
