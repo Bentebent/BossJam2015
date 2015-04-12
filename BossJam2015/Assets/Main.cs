@@ -8,6 +8,7 @@ public class Main : MonoBehaviour
 	private const int mWorldHeightBlocks = 3;
 
 	private Vector2 mWorldHalfWidth;
+	private Vector3[] mSpawnPositions = new Vector3[4];
 
     SelectionMenu mSelectionMenu;
 
@@ -77,8 +78,10 @@ public class Main : MonoBehaviour
 		{
 			int xModifier = i % 2 == 0 ? -1 : 1;
 			int yModifier = i < 2 ? -1 : 1;
+			
+			mSpawnPositions[i] = new Vector3(mWorldHalfWidth.x * xModifier, 10.0f, mWorldHalfWidth.y * yModifier);
 			GameObject spawnPoint = Instantiate(spawnPrefab);
-			spawnPoint.transform.position = new Vector3(mWorldHalfWidth.x * xModifier, 10.0f, mWorldHalfWidth.y * yModifier);
+			spawnPoint.transform.position = mSpawnPositions[i];
 		}
 	}
 

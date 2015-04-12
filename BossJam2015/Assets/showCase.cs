@@ -69,8 +69,6 @@ public class showCase : MonoBehaviour
 				mTank.transform.parent = transform;
 				mTank.transform.position = transform.position - new Vector3(0.0f, 1.4f, -0.8f);
 
-				Debug.Log("Player " + playerNumberStr + " has entered the game!");
-
 				mEnteredGame = true;
 			}
 
