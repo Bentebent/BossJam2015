@@ -18,14 +18,11 @@ public class MenuHandler : MonoBehaviour
 
 		for (int i = 0; i < 4; ++i)
 		{
-			string showCaseName = "ShowCase-Player" + (i + 1);
-
-			GameObject currShowcase = transform.Find(showCaseName).gameObject;
+			GameObject currShowcase = transform.Find("ShowCase-Player" + (i + 1)).gameObject;
 			showCase sc = currShowcase.GetComponent<showCase>();
 
 			if (sc.IsInGame)
 			{
-				Debug.Log(showCaseName + " is in game! ");
 				inGameCount++;
 			}
 
@@ -33,17 +30,13 @@ public class MenuHandler : MonoBehaviour
 				selectedCount++;
 		}
 
-		Debug.Log("In game: " + inGameCount + "; Ready: " + selectedCount);
-
 		if (inGameCount > 0 && inGameCount == selectedCount)
 		{
 			mCountDown -= Time.deltaTime;
 
-			Debug.Log("Counting Down!");
 
 			if (mCountDown <= 0.0f)
 			{
-				Debug.Log("Starting Game!");
 				// Start game
 				GameObject main = Resources.Load<GameObject>("Main");
 				Instantiate(main);
