@@ -26,22 +26,22 @@ public class GameplayState
 	// Use this for initialization
 	public void Start ()
     {
-        mPlayerOneGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_tiger"));
+        mPlayerOneGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_eagle"));
         mPlayerOnePC = mPlayerOneGO.GetComponent<PlayerController>();
         mPlayerOnePC.SetPlayerTag("Player1");
         mPlayerOnePC.m_playerName = "One";
 
-        mPlayerTwoGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_tiger"));
+        mPlayerTwoGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_dragon"));
         mPlayerTwoPC = mPlayerTwoGO.GetComponent<PlayerController>();
         mPlayerTwoPC.SetPlayerTag("Player2");
         mPlayerTwoPC.m_playerName = "Two";
 
-        mPlayerThreeGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_tiger"));
+        mPlayerThreeGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_eagle"));
         mPlayerThreePC = mPlayerThreeGO.GetComponent<PlayerController>();
         mPlayerThreePC.SetPlayerTag("Player3");
         mPlayerThreePC.m_playerName = "Three";
 
-        mPlayerFourGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_tiger"));
+        mPlayerFourGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_bear"));
         mPlayerFourPC = mPlayerFourGO.GetComponent<PlayerController>();
         mPlayerFourPC.SetPlayerTag("Player4");
         mPlayerFourPC.m_playerName = "Four";
