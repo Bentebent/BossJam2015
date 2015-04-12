@@ -24,11 +24,12 @@ public class GameplayState
     }
 
 	// Use this for initialization
-    public void Start(List<bool> isPlaying, List<string> tankType, Vector3[] spawnPos)
+    public void Start(string[] tankType, Vector3[] spawnPos)
     {
 
-        if (isPlaying[0])
+		if (tankType[0] != "")
         {
+			Debug.Log("Player 1 is playing!");
             mPlayerOneGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[0]));
 
             mPlayerOneGO.transform.position = spawnPos[0];
@@ -39,8 +40,9 @@ public class GameplayState
             mPlayerOnePC.m_playerName = "One";
         }
 
-        if (isPlaying[1])
-        {
+		if (tankType[1] != "")
+		{
+			Debug.Log("Player 2 is playing!");
             mPlayerTwoGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[1]));
 
             mPlayerTwoGO.transform.position = spawnPos[1];
@@ -49,9 +51,10 @@ public class GameplayState
             mPlayerTwoPC.SetPlayerTag("Player2");
             mPlayerTwoPC.m_playerName = "Two";
         }
-       
-        if (isPlaying[2])
-        {
+
+		if (tankType[2] != "")
+		{
+			Debug.Log("Player 3 is playing!");
             mPlayerThreeGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[2]));
 
             mPlayerThreeGO.transform.position = spawnPos[2];
@@ -60,9 +63,10 @@ public class GameplayState
             mPlayerThreePC.SetPlayerTag("Player3");
             mPlayerThreePC.m_playerName = "Three";
         }
-       
-        if (isPlaying[3])
-        {
+
+		if (tankType[3] != "")
+		{
+			Debug.Log("Player 4 is playing!");
             mPlayerFourGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[3]));
 
             mPlayerFourGO.transform.position = spawnPos[3];

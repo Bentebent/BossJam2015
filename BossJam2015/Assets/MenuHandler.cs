@@ -4,6 +4,9 @@ using System.Collections;
 public class MenuHandler : MonoBehaviour 
 {
 	private float mCountDown = 3.0f;
+	public string[] mTankNames = new string[4];
+
+	private bool mIsDead = false;
 
 	// Use this for initialization
 	void Start () 
@@ -13,6 +16,9 @@ public class MenuHandler : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (mIsDead)
+			return;
+
 		int inGameCount = 0;
 		int selectedCount = 0;
 
@@ -44,13 +50,13 @@ public class MenuHandler : MonoBehaviour
 
                 Main ms = main.GetComponent<Main>();
                 
-                ms.WHATEVER = this.gameObject;
-
-                for (int i = 0; i < 4; i++)
-                {
-                    ms.mIsPlaying.Add(false);
-                    ms.mTank.Add("empty");
-                }
+                //ms.WHATEVER = this.gameObject;
+				//
+                //for (int i = 0; i < 4; i++)
+                //{
+                //    ms.mIsPlaying.Add(false);
+                //    ms.mTank.Add("empty");
+                //}
 
                 for (int i = 0; i < 4; ++i)
                 {
@@ -59,12 +65,15 @@ public class MenuHandler : MonoBehaviour
 
                     if (sc.HasSelected)
                     {
-                        ms.mIsPlaying[i] = true;
-                        ms.mTank[i] = sc.SelectedTank;
+                        //ms.mIsPlaying[i] = true;
+                        //ms.mTank[i] = sc.SelectedTank;
+
+						mTankNames[i] = sc.SelectedTank;
                     }
                 }
 
-				Destroy(gameObject);
+				mIsDead = true;
+				//Destroy(gameObject);
 			}
 		}
 	}
