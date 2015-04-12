@@ -87,11 +87,19 @@ public class showCase : MonoBehaviour
 
 			if (Input.GetButtonDown("RBumper_Player" + playerNumberStr))
 			{
-				ChangeTank();
+				ChangeTank(false);
 
                 GameObject boom = (GameObject)Instantiate(Resources.Load("click_sound"));
                 AudioSource aso = boom.GetComponent<AudioSource>();
                 Destroy(boom, aso.clip.length);
+			}
+			else if (Input.GetButtonDown("LBumper_Player" + playerNumberStr))
+			{
+				ChangeTank(true);
+
+				GameObject boom = (GameObject)Instantiate(Resources.Load("click_sound"));
+				AudioSource aso = boom.GetComponent<AudioSource>();
+				Destroy(boom, aso.clip.length);
 			}
 
 			if (Input.GetButtonDown("Start_Player" + playerNumberStr))
@@ -117,9 +125,19 @@ public class showCase : MonoBehaviour
 		}
 	}
 
-	private void ChangeTank()
+	private void ChangeTank(bool goLeft)
 	{
-		mTankIndex = ++mTankIndex % mTankList.Count;
+		if (goLeft)
+		{
+			mTankIndex--;
+			if (mTankIndex < 0)
+				mTankIndex += mTankList.Count;
+		}
+		else
+		{
+			mTankIndex = ++mTankIndex % mTankList.Count;
+		}
+
 		Transform tankTransform = mTank.transform;
 
 		Destroy(mTank);
