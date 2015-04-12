@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource[] m_audioSources;
 
+    GameObject m_moveSound;
+
 
 	// Use this for initialization
 	void Start () 
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody>();
         m_turretRB = m_turret.GetComponent<Rigidbody>();
 
+        //m_moveSound = (GameObject)Instantiate()
 
         m_startPos = transform.position;
         m_startRot = transform.rotation;
@@ -278,6 +281,10 @@ public class PlayerController : MonoBehaviour
                 go.transform.parent = sm2.transform.parent;
                 go.transform.position = sm2.transform.position;
                 go.transform.rotation = sm2.transform.rotation;
+
+                GameObject boom = (GameObject)Instantiate(Resources.Load("boost_sound"));
+                AudioSource aso = boom.GetComponent<AudioSource>();
+                Destroy(boom, aso.clip.length);
             }
         }
     }

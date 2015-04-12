@@ -38,6 +38,10 @@ public class SpecialWeapon : MonoBehaviour
 
             go.transform.position = transform.position + new Vector3(0, 2, 0);
 
+            GameObject boom = (GameObject)Instantiate(Resources.Load("pickup_sound"));
+            AudioSource aso = boom.GetComponent<AudioSource>();
+            Destroy(boom, aso.clip.length);
+
             Destroy(gameObject);
         }
         else
