@@ -67,7 +67,9 @@ public class showCase : MonoBehaviour
 
 				mTank = Instantiate(mTankList[0]);
 				mTank.transform.parent = transform;
-				mTank.transform.position = transform.position - new Vector3(0.0f, 1.4f, -0.8f);
+				mTank.transform.position = transform.position - new Vector3(0.0f, 1.8f, 0.0f);
+
+				CleanTank();
 
 				mEnteredGame = true;
 			}
@@ -116,15 +118,23 @@ public class showCase : MonoBehaviour
 		mTank.transform.position = tankTransform.position;
 		mTank.transform.rotation = tankTransform.rotation;
 
-
-		Destroy(mTank.GetComponent<Rigidbody>());
-		Destroy(mTank.GetComponent<PlayerController>());
-		Transform spot = mTank.transform.Find("tank_turret").gameObject.transform.Find("spotlight");
-			if(spot != null)
-				spot.gameObject.GetComponent<Light>().intensity = 0.0f;
+		CleanTank();
 
 		mTapestryLeftMat.SetTexture("_MainTex", mFlagList[mTankIndex % 4]);
 		mTapestryRightMat.SetTexture("_MainTex", mFlagList[mTankIndex % 4]);
+	}
+
+	private void CleanTank()
+	{
+		Destroy(mTank.GetComponent<Rigidbody>());
+		Destroy(mTank.GetComponent<PlayerController>());
+		Destroy(mTank.transform.Find("SmokeTrail1").gameObject);
+		Destroy(mTank.transform.Find("SmokeTrail2").gameObject);
+		Destroy(mTank.transform.Find("Smoke_modded").gameObject);
+
+		Transform spot = mTank.transform.Find("tank_turret").gameObject.transform.Find("spotlight");
+		if (spot != null)
+			spot.gameObject.GetComponent<Light>().intensity = 0.0f;
 	}
 
 	public bool HasSelected
