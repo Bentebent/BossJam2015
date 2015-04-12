@@ -67,7 +67,7 @@ public class showCase : MonoBehaviour
 
 				mTank = Instantiate(mTankList[0]);
 				mTank.transform.parent = transform;
-				mTank.transform.position = transform.position - new Vector3(0.0f, 1.8f, 0.0f);
+				mTank.transform.position = transform.position - new Vector3(0.0f, 1.4f, -0.8f);
 
 				CleanTank();
 
@@ -161,6 +161,12 @@ public class showCase : MonoBehaviour
 
 	public string SelectedTank
 	{
-		get { return mTankFileNames[mTankIndex]; }
+		get 
+		{
+			if (mHasSelected)
+				return mTankFileNames[mTankIndex];
+			else
+				return "";
+		}
 	}
 }
