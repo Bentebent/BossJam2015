@@ -42,8 +42,7 @@ public class MineBehaviour : MonoBehaviour {
 			mBlinkDuration = 0.0f;
 		}
 
-		
-		if (mTimer < 0.0f)
+        if (mTimer < 0.0f)
 		{
 			// BLOW UP!
 			Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 10.0f);
@@ -56,8 +55,15 @@ public class MineBehaviour : MonoBehaviour {
 				if (hitColliders[i] != thisCollider)
 					hitColliders[i].SendMessage("OnTriggerEnter", thisCollider, SendMessageOptions.DontRequireReceiver);
 
-				Destroy(gameObject);
+                GameObject go = (GameObject)Instantiate(Resources.Load("Nuke"));
+                go.transform.position = transform.position;
 			}
+
+            GameObject boom = (GameObject)Instantiate(Resources.Load("bomb_sound"));
+            AudioSource aso = boom.GetComponent<AudioSource>();
+            Destroy(boom, aso.clip.length);
+
+            Destroy(gameObject);
 		}
 		else if (mTimer < 3.0f)
 			mExplodesSoon = true;

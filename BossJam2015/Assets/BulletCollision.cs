@@ -38,6 +38,10 @@ public class BulletCollision : MonoBehaviour
             }
             else
                 Destroy(gameObject);
+
+            GameObject boom = (GameObject)Instantiate(Resources.Load("explosion_sound"));
+            AudioSource aso = boom.GetComponent<AudioSource>();
+            Destroy(boom, aso.clip.length);
 		}
 	}
 }

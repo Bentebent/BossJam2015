@@ -11,6 +11,7 @@ public class Main : MonoBehaviour
 	private Vector3[] mSpawnPositions = new Vector3[4];
 
     SelectionMenu mSelectionMenu;
+    GameplayState mGameplayState;
 
     bool mSpawningPlayers;
     bool mGameplay;
@@ -20,10 +21,15 @@ public class Main : MonoBehaviour
 	{
 
         mSelectionMenu = new SelectionMenu();
+        mGameplayState = new GameplayState();
+
 		SetupWorld();
 		SetupPlayerSpawns();
 
-        mSpawningPlayers = true;
+        mSpawningPlayers = false;
+        mGameplay = true;
+
+        mGameplayState.Start();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +41,7 @@ public class Main : MonoBehaviour
         }
         else if (mGameplay)
         {
-
+            mGameplayState.Update();
         }
 		// Keep time.
 	}

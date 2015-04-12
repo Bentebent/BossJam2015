@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 m_contactPoint;
 
-    public int m_lives = 10;
+    public int m_score = 0;
 
     private Vector3 m_startPos;
     private Quaternion m_startRot;
@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     float m_lightTimer = 0.0f;
 
     Light m_spotLight;
+
+    private AudioSource[] m_audioSources;
+
 
 	// Use this for initialization
 	void Start () 
@@ -83,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
         m_spotLight = m_turret.transform.Find("spotlight").gameObject.GetComponent<Light>();
         m_spotLight.intensity = 0.0f;
-
 	}
 
     public void SetPlayerTag(string tag)
@@ -132,14 +134,14 @@ public class PlayerController : MonoBehaviour
 
         m_dead = false;
 
-        m_lives--;
+        m_score--;
     }
 	
 	// Update is called once per frame
 	void Update () 
     {
         //UR DED LOL
-        if (m_dead && Input.GetButtonDown("RBumper_Player" + m_playerName))
+        if (m_dead && Input.GetButtonDown("Start_Player" + m_playerName))
             ResetMe();
         else if (m_dead)
             return;
@@ -159,10 +161,10 @@ public class PlayerController : MonoBehaviour
         
         RaycastHit hitInfo;
 
-        Physics.Raycast(ray, out hitInfo, 3.0f, boardTiles);
+        bool hit = Physics.Raycast(ray, out hitInfo, 3.0f, boardTiles);
         float deaccSpeed = 0.0f;
 
-        if (hitInfo.distance < 1.0f)
+        if (hitInfo.distance < 1.0f || !hit )
         {
             RotateTracks(x, z);
             MoveTank(x, z);
@@ -172,8 +174,6 @@ public class PlayerController : MonoBehaviour
             deaccSpeed = 5.0f;
 
         gameObject.transform.position += transform.forward * (m_currentSpeed * m_speedBoost) * Time.deltaTime;
-
-       
 
         if (m_currentSpeed > 0.0f && !m_moved)
             m_currentSpeed -= deaccSpeed * Time.deltaTime;
@@ -191,7 +191,6 @@ public class PlayerController : MonoBehaviour
         if (m_lightTimer <= 0.0f)
             m_spotLight.intensity = 0.0f;
 
-       
 	}
 
     void Shoot()
@@ -211,6 +210,10 @@ public class PlayerController : MonoBehaviour
             m_shotTimer = m_shotLimit;
             m_lightTimer = 0.05f;
             m_spotLight.intensity = 100.0f;
+
+            GameObject poof = (GameObject)Instantiate(Resources.Load("Cannon Fire"));
+            poof.transform.position = m_spotLight.transform.position - newBullet.transform.forward * 3.0f;
+            poof.transform.forward = newBullet.transform.forward.normalized;
         }
 
         if (Input.GetButtonDown("LBumper_Player" + m_playerName) && m_ammoCount > 0)
@@ -229,7 +232,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject go = (GameObject)Instantiate(Resources.Load("Missile"));
                 go.transform.position = transform.position + transform.forward.normalized;
-
+                float dist = float.MaxValue;
                 for (int i = 0; i < m_playerTags.Count; i++)
                 {
                     if (m_playerTags[i] != gameObject.tag)
@@ -238,10 +241,12 @@ public class PlayerController : MonoBehaviour
 
                         if (target != null)
                         {
-                            Debug.Log(m_playerTags[i]);
-                            Debug.Log(gameObject.tag);
-                            Missile m = go.GetComponent<Missile>();
-                            m.m_target = target;
+                            if (Vector3.Distance(target.transform.position, transform.position) < dist)
+                            {
+                                dist = Vector3.Distance(target.transform.position, transform.position);
+                                Missile m = go.GetComponent<Missile>();
+                                m.m_target = target;
+                            }
                         }
                     }
                 }
@@ -250,6 +255,19 @@ public class PlayerController : MonoBehaviour
             {
                 m_speedBoostTimer = 5.0f;
                 m_speedBoost = 2.0f;
+
+                Transform sm1 = GetChildGameObject(gameObject, "SmokeTrail1").transform;
+                Transform sm2 = GetChildGameObject(gameObject, "SmokeTrail2").transform;
+
+                GameObject go = (GameObject)Instantiate(Resources.Load("fire_trail"));
+                go.transform.parent = sm1.transform.parent;
+                go.transform.position = sm1.transform.position;
+                go.transform.rotation = sm1.transform.rotation;
+
+                go = (GameObject)Instantiate(Resources.Load("fire_trail"));
+                go.transform.parent = sm2.transform.parent;
+                go.transform.position = sm2.transform.position;
+                go.transform.rotation = sm2.transform.rotation;
             }
         }
     }
@@ -348,6 +366,13 @@ public class PlayerController : MonoBehaviour
                     colliderPC.m_rigidBody.AddExplosionForce(1000.0f, contact.point, 100.0f);
                     colliderPC.m_turretRB.AddExplosionForce(1000.0f, contact.point, 100.0f);
                     colliderPC.m_dead = true;
+
+                    GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
+                    go.transform.position = colliderPC.transform.position;
+
+                    GameObject boom = (GameObject)Instantiate(Resources.Load("scream_sound"));
+                    AudioSource aso = boom.GetComponent<AudioSource>();
+                    Destroy(boom, aso.clip.length);
                 }
 
             }
@@ -368,6 +393,13 @@ public class PlayerController : MonoBehaviour
         m_rigidBody.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
         m_turretRB.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
         m_dead = true;
+
+        GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
+        go.transform.position = transform.position;
+
+        GameObject boom = (GameObject)Instantiate(Resources.Load("scream_sound"));
+        AudioSource aso = boom.GetComponent<AudioSource>();
+        Destroy(boom, aso.clip.length);
     }
 
     private void MoveTank(float x, float z)
