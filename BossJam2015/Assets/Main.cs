@@ -107,7 +107,7 @@ public class Main : MonoBehaviour
 
 		mWorldHalfWidth = new Vector2((mWorldWidthBlocks - 1) * groundScale.x * 0.5f, (mWorldDepthBlocks - 1) * groundScale.z * 0.5f);
 
-        GameObject map_one = (GameObject)Instantiate(Resources.Load("Maps/map_one"));
+        //GameObject map_one = (GameObject)Instantiate(Resources.Load("Maps/map_one"));
 	}
 
 	private void SetupPlayerSpawns()
