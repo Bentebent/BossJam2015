@@ -56,6 +56,9 @@ public class MineBehaviour : MonoBehaviour {
 				if (hitColliders[i] != thisCollider)
 					hitColliders[i].SendMessage("OnTriggerEnter", thisCollider, SendMessageOptions.DontRequireReceiver);
 
+                GameObject go = (GameObject)Instantiate(Resources.Load("Nuke"));
+                go.transform.position = transform.position;
+
 				Destroy(gameObject);
 			}
 		}

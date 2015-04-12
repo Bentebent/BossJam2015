@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 m_contactPoint;
 
-    public int m_lives = 10;
+    public int m_score = 0;
 
     private Vector3 m_startPos;
     private Quaternion m_startRot;
@@ -132,14 +132,14 @@ public class PlayerController : MonoBehaviour
 
         m_dead = false;
 
-        m_lives--;
+        m_score--;
     }
 	
 	// Update is called once per frame
 	void Update () 
     {
         //UR DED LOL
-        if (m_dead && Input.GetButtonDown("RBumper_Player" + m_playerName))
+        if (m_dead && Input.GetButtonDown("Start_Player" + m_playerName))
             ResetMe();
         else if (m_dead)
             return;
@@ -173,8 +173,6 @@ public class PlayerController : MonoBehaviour
 
         gameObject.transform.position += transform.forward * (m_currentSpeed * m_speedBoost) * Time.deltaTime;
 
-       
-
         if (m_currentSpeed > 0.0f && !m_moved)
             m_currentSpeed -= deaccSpeed * Time.deltaTime;
         else if (m_currentSpeed < 0.0f && !m_moved)
@@ -191,7 +189,6 @@ public class PlayerController : MonoBehaviour
         if (m_lightTimer <= 0.0f)
             m_spotLight.intensity = 0.0f;
 
-       
 	}
 
     void Shoot()
@@ -229,7 +226,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject go = (GameObject)Instantiate(Resources.Load("Missile"));
                 go.transform.position = transform.position + transform.forward.normalized;
-
+                float dist = float.MaxValue;
                 for (int i = 0; i < m_playerTags.Count; i++)
                 {
                     if (m_playerTags[i] != gameObject.tag)
@@ -238,10 +235,12 @@ public class PlayerController : MonoBehaviour
 
                         if (target != null)
                         {
-                            Debug.Log(m_playerTags[i]);
-                            Debug.Log(gameObject.tag);
-                            Missile m = go.GetComponent<Missile>();
-                            m.m_target = target;
+                            if (Vector3.Distance(target.transform.position, transform.position) < dist)
+                            {
+                                dist = Vector3.Distance(target.transform.position, transform.position);
+                                Missile m = go.GetComponent<Missile>();
+                                m.m_target = target;
+                            }
                         }
                     }
                 }
@@ -348,6 +347,9 @@ public class PlayerController : MonoBehaviour
                     colliderPC.m_rigidBody.AddExplosionForce(1000.0f, contact.point, 100.0f);
                     colliderPC.m_turretRB.AddExplosionForce(1000.0f, contact.point, 100.0f);
                     colliderPC.m_dead = true;
+
+                    GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
+                    go.transform.position = colliderPC.transform.position;
                 }
 
             }
@@ -368,6 +370,9 @@ public class PlayerController : MonoBehaviour
         m_rigidBody.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
         m_turretRB.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
         m_dead = true;
+
+        GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
+        go.transform.position = transform.position;
     }
 
     private void MoveTank(float x, float z)
