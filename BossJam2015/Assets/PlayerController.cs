@@ -214,6 +214,10 @@ public class PlayerController : MonoBehaviour
             GameObject poof = (GameObject)Instantiate(Resources.Load("Cannon Fire"));
             poof.transform.position = m_spotLight.transform.position - newBullet.transform.forward * 3.0f;
             poof.transform.forward = newBullet.transform.forward.normalized;
+
+            GameObject boom = (GameObject)Instantiate(Resources.Load("blast_sound"));
+            AudioSource aso = boom.GetComponent<AudioSource>();
+            Destroy(boom, aso.clip.length);
         }
 
         if (Input.GetButtonDown("LBumper_Player" + m_playerName) && m_ammoCount > 0)
@@ -250,6 +254,10 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
+
+                GameObject boom = (GameObject)Instantiate(Resources.Load("blast_sound"));
+                AudioSource aso = boom.GetComponent<AudioSource>();
+                Destroy(boom, aso.clip.length);
             }
             else if (m_specialWeapon == SPECIAL_WEAPON.SPEED_BOOST && m_speedBoostTimer < 0.0f)
             {

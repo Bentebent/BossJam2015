@@ -1,45 +1,45 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &160806
+--- !u!1 &119500
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 464372}
-  - 82: {fileID: 8263560}
+  - 4: {fileID: 476378}
+  - 82: {fileID: 8200276}
   m_Layer: 0
-  m_Name: explosion_sound
+  m_Name: blast_sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &464372
+--- !u!4 &476378
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160806}
+  m_GameObject: {fileID: 119500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8263560
+--- !u!82 &8200276
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160806}
+  m_GameObject: {fileID: 119500}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b6a690daf4ec2414e8402f59345f75aa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6fb7cbc4126ba0c4191284e38363356f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .319000006
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -106,5 +106,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 160806}
+  m_RootGameObject: {fileID: 119500}
   m_IsPrefabParent: 1
