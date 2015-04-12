@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour
 
     Light m_spotLight;
 
+    private AudioSource[] m_audioSources;
+
+
 	// Use this for initialization
 	void Start () 
     {
@@ -83,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
         m_spotLight = m_turret.transform.Find("spotlight").gameObject.GetComponent<Light>();
         m_spotLight.intensity = 0.0f;
-
 	}
 
     public void SetPlayerTag(string tag)
@@ -367,6 +369,10 @@ public class PlayerController : MonoBehaviour
 
                     GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
                     go.transform.position = colliderPC.transform.position;
+
+                    GameObject boom = (GameObject)Instantiate(Resources.Load("scream_sound"));
+                    AudioSource aso = boom.GetComponent<AudioSource>();
+                    Destroy(boom, aso.clip.length);
                 }
 
             }
@@ -390,6 +396,10 @@ public class PlayerController : MonoBehaviour
 
         GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
         go.transform.position = transform.position;
+
+        GameObject boom = (GameObject)Instantiate(Resources.Load("scream_sound"));
+        AudioSource aso = boom.GetComponent<AudioSource>();
+        Destroy(boom, aso.clip.length);
     }
 
     private void MoveTank(float x, float z)

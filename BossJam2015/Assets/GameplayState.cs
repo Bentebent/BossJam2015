@@ -82,21 +82,21 @@ public class GameplayState
 
             int wep = Random.Range(0, 3);
 
-            if (wep == 0)
-            {
-                sw.m_weaponType = SPECIAL_WEAPON.MISSILE;
-                sw.ammoCount = 1;
-            }
-            else if (wep == 1)
-            {
-                sw.m_weaponType = SPECIAL_WEAPON.MINE;
-                sw.ammoCount = 3;
-            }
-            else if (wep == 2)
-            {
-                sw.m_weaponType = SPECIAL_WEAPON.SPEED_BOOST;
-                sw.ammoCount = 3;
-            }
+           if (wep == 0)
+           {
+               sw.m_weaponType = SPECIAL_WEAPON.MISSILE;
+               sw.ammoCount = 1;
+           }
+           else if (wep == 1)
+           {
+               sw.m_weaponType = SPECIAL_WEAPON.MINE;
+               sw.ammoCount = 3;
+           }
+           else if (wep == 2)
+           {
+               sw.m_weaponType = SPECIAL_WEAPON.SPEED_BOOST;
+               sw.ammoCount = 3;
+           }
         }
     }
 }

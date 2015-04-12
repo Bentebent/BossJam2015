@@ -38,6 +38,10 @@ public class Missile : MonoBehaviour
         GameObject go = (GameObject)Instantiate(Resources.Load("Nuke"));
         go.transform.position = transform.position;
 
+        GameObject boom = (GameObject)Instantiate(Resources.Load("bomb_sound"));
+        AudioSource aso = boom.GetComponent<AudioSource>();
+        Destroy(boom, aso.clip.length);
+
         Destroy(gameObject);
     }
 	
