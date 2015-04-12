@@ -87,21 +87,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1652118062 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 163974, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
-  m_PrefabInternal: {fileID: 1826977991}
---- !u!114 &1652118064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652118062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5371a1ab9f9a0f54594b100ab321ee14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1826977991
 Prefab:
   m_ObjectHideFlags: 0
@@ -139,23 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 438838, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11405334, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
-      propertyPath: playerNumberStr
-      value: Two
-      objectReference: {fileID: 0}
-    - target: {fileID: 11439382, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
-      propertyPath: playerNumberStr
-      value: Three
-      objectReference: {fileID: 0}
-    - target: {fileID: 11443356, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
-      propertyPath: playerNumberStr
-      value: Four
-      objectReference: {fileID: 0}
-    - target: {fileID: 163974, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
-      propertyPath: m_TagString
-      value: MenuScene
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}

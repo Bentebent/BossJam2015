@@ -36,8 +36,6 @@ public class Main : MonoBehaviour
 
         WHATEVER = GameObject.FindGameObjectWithTag("MenuScene");
         MenuHandler mh = WHATEVER.GetComponent<MenuHandler>();
-
-        mh.GetPlayers();
         mGameplayState.Start(mIsPlaying, mTank, mSpawnPositions);
 	}
 	
