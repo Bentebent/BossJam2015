@@ -280,8 +280,8 @@ public class GameplayState
             GameObject go = GameObject.Instantiate(mPUResource);
             SpecialWeapon sw = go.GetComponent<SpecialWeapon>();
 
-            int x = Random.Range(-100, 100);
-            int y = Random.Range(-100, 100);
+            int x = Random.Range(-60, 60);
+            int y = Random.Range(-40, 40);
 
             go.transform.position = new Vector3(x, 40, y);
 
