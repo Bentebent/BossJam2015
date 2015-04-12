@@ -19,6 +19,7 @@ public class Main : MonoBehaviour
 
     public List<bool> mIsPlaying = new List<bool>();
     public List<string> mTank = new List<string>();
+	public List<string> mMapNames = new List<string>();
 
     public GameObject WHATEVER;
 
@@ -29,6 +30,10 @@ public class Main : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		mMapNames.Add("Maps/map_one");
+		mMapNames.Add("Maps/map_two");
+		mMapNames.Add("Maps/map_three");
+
         mSelectionMenu = new SelectionMenu();
         mGameplayState = new GameplayState();
 
@@ -102,7 +107,8 @@ public class Main : MonoBehaviour
 
 		mWorldHalfWidth = new Vector2((mWorldWidthBlocks - 1) * groundScale.x * 0.5f, (mWorldDepthBlocks - 1) * groundScale.z * 0.5f);
 
-        GameObject map_one = (GameObject)Instantiate(Resources.Load("Maps/map_three"));
+		int randomMap = Random.Range(0, mMapNames.Count - 1);
+        GameObject map_one = (GameObject)Instantiate(Resources.Load(mMapNames[randomMap]));
 	}
 
 	private void SetupPlayerSpawns()
