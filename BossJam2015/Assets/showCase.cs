@@ -72,6 +72,10 @@ public class showCase : MonoBehaviour
 				CleanTank();
 
 				mEnteredGame = true;
+
+                GameObject boom = (GameObject)Instantiate(Resources.Load("start_sound"));
+                AudioSource aso = boom.GetComponent<AudioSource>();
+                Destroy(boom, aso.clip.length);
 			}
 
 			return;
@@ -84,6 +88,10 @@ public class showCase : MonoBehaviour
 			if (Input.GetButtonDown("RBumper_Player" + playerNumberStr))
 			{
 				ChangeTank();
+
+                GameObject boom = (GameObject)Instantiate(Resources.Load("click_sound"));
+                AudioSource aso = boom.GetComponent<AudioSource>();
+                Destroy(boom, aso.clip.length);
 			}
 
 			if (Input.GetButtonDown("Start_Player" + playerNumberStr))
@@ -98,6 +106,10 @@ public class showCase : MonoBehaviour
 
 				mTank.transform.rotation = transform.rotation;
 				mTank.transform.Rotate(mUpDirection, 180.0f);
+
+                GameObject boom = (GameObject)Instantiate(Resources.Load("start_sound"));
+                AudioSource aso = boom.GetComponent<AudioSource>();
+                Destroy(boom, aso.clip.length);
 			}
 		}
 		else

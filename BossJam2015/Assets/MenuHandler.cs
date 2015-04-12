@@ -57,16 +57,12 @@ public class MenuHandler : MonoBehaviour
                     GameObject currShowcase = transform.Find("ShowCase-Player" + (i + 1)).gameObject;
                     showCase sc = currShowcase.GetComponent<showCase>();
 
-                   
-
                     if (sc.HasSelected)
                     {
                         ms.mIsPlaying[i] = true;
                         ms.mTank[i] = sc.SelectedTank;
                     }
                 }
-
-				
 
 				Destroy(gameObject);
 			}
