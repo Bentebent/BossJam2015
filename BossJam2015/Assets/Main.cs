@@ -20,6 +20,8 @@ public class Main : MonoBehaviour
     public List<bool> mIsPlaying = new List<bool>();
     public List<string> mTank = new List<string>();
 
+    public GameObject WHATEVER;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -32,7 +34,11 @@ public class Main : MonoBehaviour
         mSpawningPlayers = false;
         mGameplay = true;
 
-        mGameplayState.Start();
+        WHATEVER = GameObject.FindGameObjectWithTag("MenuScene");
+        MenuHandler mh = WHATEVER.GetComponent<MenuHandler>();
+
+        mh.GetPlayers();
+        mGameplayState.Start(mIsPlaying, mTank, mSpawnPositions);
 	}
 	
 	// Update is called once per frame

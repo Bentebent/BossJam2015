@@ -153,6 +153,10 @@ Prefab:
       propertyPath: playerNumberStr
       value: Four
       objectReference: {fileID: 0}
+    - target: {fileID: 163974, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
+      propertyPath: m_TagString
+      value: MenuScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f2aee4a9528ee244a5c7b141abec4aa, type: 2}
   m_IsPrefabParent: 0

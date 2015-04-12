@@ -43,6 +43,8 @@ public class MenuHandler : MonoBehaviour
                 Instantiate(main);
 
                 Main ms = main.GetComponent<Main>();
+                
+                ms.WHATEVER = this.gameObject;
 
                 for (int i = 0; i < 4; i++)
                 {

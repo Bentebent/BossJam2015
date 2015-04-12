@@ -12,6 +12,7 @@ TagManager:
   - Player4
   - Mine
   - Missile
+  - MenuScene
   layers:
   - Default
   - TransparentFX

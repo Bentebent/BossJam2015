@@ -24,27 +24,54 @@ public class GameplayState
     }
 
 	// Use this for initialization
-	public void Start ()
+    public void Start(List<bool> isPlaying, List<string> tankType, Vector3[] spawnPos)
     {
-        mPlayerOneGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_eagle"));
-        mPlayerOnePC = mPlayerOneGO.GetComponent<PlayerController>();
-        mPlayerOnePC.SetPlayerTag("Player1");
-        mPlayerOnePC.m_playerName = "One";
 
-        mPlayerTwoGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_dragon"));
-        mPlayerTwoPC = mPlayerTwoGO.GetComponent<PlayerController>();
-        mPlayerTwoPC.SetPlayerTag("Player2");
-        mPlayerTwoPC.m_playerName = "Two";
+        if (isPlaying[0])
+        {
+            mPlayerOneGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[0]));
 
-        mPlayerThreeGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_eagle"));
-        mPlayerThreePC = mPlayerThreeGO.GetComponent<PlayerController>();
-        mPlayerThreePC.SetPlayerTag("Player3");
-        mPlayerThreePC.m_playerName = "Three";
+            mPlayerOneGO.transform.position = spawnPos[0];
 
-        mPlayerFourGO = GameObject.Instantiate(Resources.Load<GameObject>("sherman_bear"));
-        mPlayerFourPC = mPlayerFourGO.GetComponent<PlayerController>();
-        mPlayerFourPC.SetPlayerTag("Player4");
-        mPlayerFourPC.m_playerName = "Four";
+
+            mPlayerOnePC = mPlayerOneGO.GetComponent<PlayerController>();
+            mPlayerOnePC.SetPlayerTag("Player1");
+            mPlayerOnePC.m_playerName = "One";
+        }
+
+        if (isPlaying[1])
+        {
+            mPlayerTwoGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[1]));
+
+            mPlayerTwoGO.transform.position = spawnPos[1];
+
+            mPlayerTwoPC = mPlayerTwoGO.GetComponent<PlayerController>();
+            mPlayerTwoPC.SetPlayerTag("Player2");
+            mPlayerTwoPC.m_playerName = "Two";
+        }
+       
+        if (isPlaying[2])
+        {
+            mPlayerThreeGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[2]));
+
+            mPlayerThreeGO.transform.position = spawnPos[2];
+
+            mPlayerThreePC = mPlayerThreeGO.GetComponent<PlayerController>();
+            mPlayerThreePC.SetPlayerTag("Player3");
+            mPlayerThreePC.m_playerName = "Three";
+        }
+       
+        if (isPlaying[3])
+        {
+            mPlayerFourGO = GameObject.Instantiate(Resources.Load<GameObject>(tankType[3]));
+
+            mPlayerFourGO.transform.position = spawnPos[3];
+
+            mPlayerFourPC = mPlayerFourGO.GetComponent<PlayerController>();
+            mPlayerFourPC.SetPlayerTag("Player4");
+            mPlayerFourPC.m_playerName = "Four";
+        }
+      
 	}
 	
 	// Update is called once per frame
