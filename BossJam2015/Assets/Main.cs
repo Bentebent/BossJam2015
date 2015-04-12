@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class Main : MonoBehaviour 
 {
-	private const int mWorldWidthBlocks = 30;
-	private const int mWorldDepthBlocks = 20;
-	private const int mWorldHeightBlocks = 2;
+	public const int mWorldWidthBlocks = 30;
+	public const int mWorldDepthBlocks = 20;
+	public const int mWorldHeightBlocks = 2;
 
 	private Vector2 mWorldHalfWidth;
 	private Vector3[] mSpawnPositions = new Vector3[4];
