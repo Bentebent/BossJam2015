@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19823532}
   - 199: {fileID: 19973136}
   m_Layer: 0
-  m_Name: SmokeTrail
+  m_Name: SmokeTrail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ GameObject:
   - 198: {fileID: 19887672}
   - 199: {fileID: 19927960}
   m_Layer: 0
-  m_Name: SmokeTrail
+  m_Name: SmokeTrail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

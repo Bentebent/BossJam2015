@@ -159,10 +159,10 @@ public class PlayerController : MonoBehaviour
         
         RaycastHit hitInfo;
 
-        Physics.Raycast(ray, out hitInfo, 3.0f, boardTiles);
+        bool hit = Physics.Raycast(ray, out hitInfo, 3.0f, boardTiles);
         float deaccSpeed = 0.0f;
 
-        if (hitInfo.distance < 1.0f)
+        if (hitInfo.distance < 1.0f || !hit )
         {
             RotateTracks(x, z);
             MoveTank(x, z);
@@ -208,6 +208,10 @@ public class PlayerController : MonoBehaviour
             m_shotTimer = m_shotLimit;
             m_lightTimer = 0.05f;
             m_spotLight.intensity = 100.0f;
+
+            GameObject poof = (GameObject)Instantiate(Resources.Load("Cannon Fire"));
+            poof.transform.position = m_spotLight.transform.position - newBullet.transform.forward * 3.0f;
+            poof.transform.forward = newBullet.transform.forward.normalized;
         }
 
         if (Input.GetButtonDown("LBumper_Player" + m_playerName) && m_ammoCount > 0)
@@ -249,6 +253,19 @@ public class PlayerController : MonoBehaviour
             {
                 m_speedBoostTimer = 5.0f;
                 m_speedBoost = 2.0f;
+
+                Transform sm1 = GetChildGameObject(gameObject, "SmokeTrail1").transform;
+                Transform sm2 = GetChildGameObject(gameObject, "SmokeTrail2").transform;
+
+                GameObject go = (GameObject)Instantiate(Resources.Load("fire_trail"));
+                go.transform.parent = sm1.transform.parent;
+                go.transform.position = sm1.transform.position;
+                go.transform.rotation = sm1.transform.rotation;
+
+                go = (GameObject)Instantiate(Resources.Load("fire_trail"));
+                go.transform.parent = sm2.transform.parent;
+                go.transform.position = sm2.transform.position;
+                go.transform.rotation = sm2.transform.rotation;
             }
         }
     }

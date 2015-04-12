@@ -7,6 +7,9 @@ public class GroundCollision : MonoBehaviour
 	{
 		if(other.tag == "Projectile")
 		{
+            GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
+            go.transform.position = transform.position;
+
 			Destroy(gameObject);
 		}
         else if (other.tag == "Mine")
