@@ -134,7 +134,7 @@ public class GameplayState
         {
             m_first = false;
 
-            m_timer = 180.0f;
+            m_timer = 90.0f;
         }
 
         if (m_timer < 0.0f)
