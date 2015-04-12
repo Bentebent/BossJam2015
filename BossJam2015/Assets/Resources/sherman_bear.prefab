@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 442966}
   - 33: {fileID: 3325016}
   - 23: {fileID: 2325656}
-  - 114: {fileID: 11478314}
   - 54: {fileID: 5459356}
   - 64: {fileID: 6457810}
   m_Layer: 0
@@ -186,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 103664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.7299995, y: 9.98999977, z: -5.82999992}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 446542}
   - {fileID: 460848}
@@ -423,8 +422,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -530,7 +529,7 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 8
+  m_Intensity: 0
   m_Range: 50
   m_SpotAngle: 121.099998
   m_CookieSize: 10
@@ -552,31 +551,6 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11478314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c0aaf62b3c46be4f9ae32ab77161232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_maxSpeed: 30
-  m_acceleration: 50
-  m_currentSpeed: 0
-  m_oldX: 0
-  m_oldZ: 0
-  m_rotationSpeed: 5
-  m_playerName: One
-  m_dead: 0
-  m_rigidBody: {fileID: 0}
-  m_turretRB: {fileID: 0}
-  m_contactPoint: {x: 0, y: 0, z: 0}
-  m_lives: 10
-  m_specialWeapon: 0
-  m_ammoCount: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

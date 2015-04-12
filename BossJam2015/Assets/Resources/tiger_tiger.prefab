@@ -33,22 +33,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &154128
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 489632}
-  - 108: {fileID: 10876466}
-  m_Layer: 0
-  m_Name: spotlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &154230
 GameObject:
   m_ObjectHideFlags: 1
@@ -77,7 +61,6 @@ GameObject:
   - 4: {fileID: 460894}
   - 33: {fileID: 3382376}
   - 23: {fileID: 2372970}
-  - 114: {fileID: 11479510}
   - 54: {fileID: 5465576}
   - 64: {fileID: 6408286}
   m_Layer: 0
@@ -175,7 +158,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.60699999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 489632}
   - {fileID: 485706}
   m_Father: {fileID: 460894}
   m_RootOrder: 0
@@ -187,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 154624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.69999981, y: 10, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441590}
   - {fileID: 435932}
@@ -205,18 +187,6 @@ Transform:
   m_Children:
   - {fileID: 495662}
   - {fileID: 418828}
-  m_Father: {fileID: 441590}
-  m_RootOrder: 1
---- !u!4 &489632
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154128}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: -0, y: 0, z: -1.55400002}
-  m_LocalScale: {x: .5, y: .5, z: .5}
-  m_Children: []
   m_Father: {fileID: 441590}
   m_RootOrder: 0
 --- !u!4 &495662
@@ -408,8 +378,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -520,63 +490,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!108 &10876466
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154128}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 8
-  m_Range: 50
-  m_SpotAngle: 121.099998
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 1
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
---- !u!114 &11479510
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c0aaf62b3c46be4f9ae32ab77161232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_maxSpeed: 30
-  m_acceleration: 50
-  m_currentSpeed: 0
-  m_oldX: 0
-  m_oldZ: 0
-  m_rotationSpeed: 5
-  m_playerName: Three
-  m_dead: 0
-  m_rigidBody: {fileID: 0}
-  m_turretRB: {fileID: 0}
-  m_contactPoint: {x: 0, y: 0, z: 0}
-  m_lives: 10
-  m_specialWeapon: 0
-  m_ammoCount: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
