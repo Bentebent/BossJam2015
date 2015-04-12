@@ -43,8 +43,7 @@ public class Main : MonoBehaviour
 		Debug.Log("Tank name 3: " + mh.mTankNames[3]);
 
 		mGameplayState.Start(mh.mTankNames, mSpawnPositions);
-
-        //mGameplayState.Start(mIsPlaying, mTank, mSpawnPositions);
+		Destroy(WHATEVER);
 	}
 	
 	// Update is called once per frame
