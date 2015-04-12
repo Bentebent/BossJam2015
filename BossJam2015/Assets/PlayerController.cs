@@ -229,8 +229,10 @@ public class PlayerController : MonoBehaviour
                 GameObject go = (GameObject)Instantiate(Resources.Load("Mine"));
 
                 go.transform.position = transform.position + transform.forward.normalized * 5.0f;
-                
 
+                GameObject boom = (GameObject)Instantiate(Resources.Load("meepmeep_sound"));
+                AudioSource aso = boom.GetComponent<AudioSource>();
+                Destroy(boom, aso.clip.length);
             }
             else if (m_specialWeapon == SPECIAL_WEAPON.MISSILE)
             {
