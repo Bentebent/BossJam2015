@@ -8,6 +8,7 @@ public class showCase : MonoBehaviour
 
 	private GameObject mSelected;
 	private GameObject mTank;
+	private List<string> mTankFileNames;
 	private List<GameObject> mTankList;
 	private List<Texture> mFlagList;
 	private int mTankIndex = 0;
@@ -16,6 +17,7 @@ public class showCase : MonoBehaviour
 	private float mRotationSpeed = 36.0f;
 
 	private bool mHasSelected = false;
+	private bool mEnteredGame = false;
 
 	private Material mTapestryLeftMat;
 	private Material mTapestryRightMat;
@@ -23,19 +25,25 @@ public class showCase : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		GameObject platform = transform.Find("Platform").gameObject;
 		mSelected = Resources.Load<GameObject>("SelectedText");
+
+		mTankFileNames = new List<string>();
+
+		mTankFileNames.Add("tiger_tiger");
+		mTankFileNames.Add("tiger_eagle");
+		mTankFileNames.Add("tiger_dragon");
+		mTankFileNames.Add("tiger_bear");
+		mTankFileNames.Add("sherman_tiger");
+		mTankFileNames.Add("sherman_eagle");
+		mTankFileNames.Add("sherman_dragon");
+		mTankFileNames.Add("sherman_bear");
 
 		mTankList = new List<GameObject>();
 
-		mTankList.Add(Resources.Load<GameObject>("tiger_tiger"));
-		mTankList.Add(Resources.Load<GameObject>("tiger_eagle"));
-		mTankList.Add(Resources.Load<GameObject>("tiger_dragon"));
-		mTankList.Add(Resources.Load<GameObject>("tiger_bear"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_tiger"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_eagle"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_dragon"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_bear"));
+		for (int i = 0; i < mTankFileNames.Count; ++i)
+		{
+			mTankList.Add(Resources.Load<GameObject>(mTankFileNames[i]));
+		}
 
 		mFlagList = new List<Texture>();
 
@@ -44,10 +52,6 @@ public class showCase : MonoBehaviour
 		mFlagList.Add(Resources.Load<Texture>("Materials/CHI"));
 		mFlagList.Add(Resources.Load<Texture>("Materials/RUS"));
 
-		mTank = Instantiate(mTankList[0]);
-		mTank.transform.position = platform.transform.position + new Vector3(0.0f, 0.0f, 0.0f);
-		mTank.transform.Rotate(mUpDirection, Random.Range(0, 360));
-
 		mTapestryLeftMat = transform.Find("TapestryLeft").gameObject.GetComponent<Renderer>().material;
 		mTapestryRightMat = transform.Find("TapestryRight").gameObject.GetComponent<Renderer>().material;
 	}
@@ -55,6 +59,24 @@ public class showCase : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (!mEnteredGame)
+		{
+			if (Input.GetButtonDown("Start_Player" + playerNumberStr))
+			{
+				GameObject platform = transform.Find("Platform").gameObject;
+
+				mTank = Instantiate(mTankList[0]);
+				mTank.transform.parent = transform;
+				mTank.transform.position = transform.position - new Vector3(0.0f, 1.4f, -0.8f);
+
+				Debug.Log("Player " + playerNumberStr + " has entered the game!");
+
+				mEnteredGame = true;
+			}
+
+			return;
+		}
+
 		if (!mHasSelected)
 		{
 			mTank.transform.Rotate(mUpDirection, mRotationSpeed * Time.deltaTime);
@@ -67,8 +89,8 @@ public class showCase : MonoBehaviour
 			if (Input.GetButtonDown("Start_Player" + playerNumberStr))
 			{
 				GameObject selectedText = Instantiate(mSelected);
-				selectedText.transform.position = transform.position;
-				selectedText.transform.position += new Vector3(-2.0f, -0.8f, -1.0f);
+				selectedText.transform.position = transform.position + new Vector3(-2.0f, -0.8f, -1.0f);
+				selectedText.transform.parent = transform;
 				selectedText.transform.rotation = transform.rotation;
 				selectedText.transform.Rotate(new Vector3(1.0f, 0.0f, 0.0f), -25.0f);
 
@@ -92,9 +114,9 @@ public class showCase : MonoBehaviour
 
 		// Create a new tank and remove everything we don't want
 		mTank = Instantiate(mTankList[mTankIndex]);
+		mTank.transform.parent = transform;
 		mTank.transform.position = tankTransform.position;
 		mTank.transform.rotation = tankTransform.rotation;
-		mTank.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
 
 		Destroy(mTank.GetComponent<Rigidbody>());
@@ -107,8 +129,18 @@ public class showCase : MonoBehaviour
 		mTapestryRightMat.SetTexture("_MainTex", mFlagList[mTankIndex % 4]);
 	}
 
-	public GameObject SelectedTank
+	public bool HasSelected
 	{
-		get { return mTank; }
+		get { return mHasSelected; }
+	}
+
+	public bool IsInGame
+	{
+		get { return mEnteredGame; }
+	}
+
+	public string SelectedTank
+	{
+		get { return mTankFileNames[mTankIndex]; }
 	}
 }
