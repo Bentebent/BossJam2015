@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 490942}
   - 198: {fileID: 19879148}
   - 199: {fileID: 19963032}
+  - 114: {fileID: 11412462}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Untagged
@@ -25,7 +26,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400450}
-  - 114: {fileID: 11416676}
   m_Layer: 0
   m_Name: Nuke
   m_TagString: Untagged
@@ -43,6 +43,7 @@ GameObject:
   - 4: {fileID: 427852}
   - 198: {fileID: 19804072}
   - 199: {fileID: 19907764}
+  - 114: {fileID: 11486252}
   m_Layer: 0
   m_Name: Foot
   m_TagString: Untagged
@@ -60,6 +61,7 @@ GameObject:
   - 4: {fileID: 453506}
   - 198: {fileID: 19860024}
   - 199: {fileID: 19963828}
+  - 114: {fileID: 11476466}
   m_Layer: 0
   m_Name: Pillar
   m_TagString: Untagged
@@ -77,6 +79,7 @@ GameObject:
   - 4: {fileID: 474690}
   - 198: {fileID: 19814290}
   - 199: {fileID: 19988116}
+  - 114: {fileID: 11490862}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -148,12 +151,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400450}
   m_RootOrder: 0
---- !u!114 &11416676
+--- !u!114 &11412462
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104768}
+  m_GameObject: {fileID: 100148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e4baf6bc1bdbd49afa959b0837e56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11476466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e4baf6bc1bdbd49afa959b0837e56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11486252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e4baf6bc1bdbd49afa959b0837e56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11490862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188230}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20e4baf6bc1bdbd49afa959b0837e56c, type: 3}

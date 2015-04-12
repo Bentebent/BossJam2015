@@ -6,7 +6,7 @@ public class Main : MonoBehaviour
 {
 	private const int mWorldWidthBlocks = 50;
 	private const int mWorldDepthBlocks = 50;
-	private const int mWorldHeightBlocks = 3;
+	private const int mWorldHeightBlocks = 2;
 
 	private Vector2 mWorldHalfWidth;
 	private Vector3[] mSpawnPositions = new Vector3[4];

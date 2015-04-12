@@ -70,11 +70,14 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        transform.localScale = new Vector3(2, 2, 2);
+
         m_turret = GetChildGameObject(this.gameObject, "tank_turret");
         m_rigidBody = GetComponent<Rigidbody>();
         m_turretRB = m_turret.GetComponent<Rigidbody>();
 
-        //m_moveSound = (GameObject)Instantiate()
+        m_moveSound = (GameObject)Instantiate(Resources.Load("moving_sound"));
+        m_audioSources = m_moveSound.GetComponents<AudioSource>();
 
         m_startPos = transform.position;
         m_startRot = transform.rotation;
@@ -89,6 +92,8 @@ public class PlayerController : MonoBehaviour
 
         m_spotLight = m_turret.transform.Find("spotlight").gameObject.GetComponent<Light>();
         m_spotLight.intensity = 0.0f;
+
+       
 	}
 
     public void SetPlayerTag(string tag)
@@ -149,6 +154,9 @@ public class PlayerController : MonoBehaviour
         else if (m_dead)
             return;
 
+        if (transform.position.y < -3.0f)
+            BounceMe();
+
         float x = 0;
         float z = 0;
 
@@ -179,9 +187,22 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position += transform.forward * (m_currentSpeed * m_speedBoost) * Time.deltaTime;
 
         if (m_currentSpeed > 0.0f && !m_moved)
+        {
             m_currentSpeed -= deaccSpeed * Time.deltaTime;
+        }
         else if (m_currentSpeed < 0.0f && !m_moved)
+        {
             m_currentSpeed += deaccSpeed * Time.deltaTime;
+        }
+
+        if (m_moved && !m_audioSources[0].isPlaying)
+        {
+            m_audioSources[0].Play();
+            m_audioSources[0].loop = true;
+        }
+        else
+            m_audioSources[0].loop = false;
+            
         
         RotateTurret();
         Shoot();
@@ -410,6 +431,9 @@ public class PlayerController : MonoBehaviour
         m_rigidBody.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
         m_turretRB.AddExplosionForce(10000.0f, m_contactPoint, 100.0f);
         m_dead = true;
+
+        m_ammoCount = 0;
+        m_specialWeapon = SPECIAL_WEAPON.NONE;
 
         GameObject go = (GameObject)Instantiate(Resources.Load("Explosion"));
         go.transform.position = transform.position;
