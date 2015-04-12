@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Main : MonoBehaviour 
 {
@@ -16,10 +17,12 @@ public class Main : MonoBehaviour
     bool mSpawningPlayers;
     bool mGameplay;
 
+    public List<bool> mIsPlaying = new List<bool>();
+    public List<string> mTank = new List<string>();
+
 	// Use this for initialization
 	void Start () 
 	{
-
         mSelectionMenu = new SelectionMenu();
         mGameplayState = new GameplayState();
 

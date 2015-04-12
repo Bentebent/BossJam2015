@@ -37,9 +37,34 @@ public class MenuHandler : MonoBehaviour
 
 			if (mCountDown <= 0.0f)
 			{
-				// Start game
+
+                // Start game
 				GameObject main = Resources.Load<GameObject>("Main");
-				Instantiate(main);
+                Instantiate(main);
+
+                Main ms = main.GetComponent<Main>();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    ms.mIsPlaying.Add(false);
+                    ms.mTank.Add("empty");
+                }
+
+                for (int i = 0; i < 4; ++i)
+                {
+                    GameObject currShowcase = transform.Find("ShowCase-Player" + (i + 1)).gameObject;
+                    showCase sc = currShowcase.GetComponent<showCase>();
+
+                   
+
+                    if (sc.HasSelected)
+                    {
+                        ms.mIsPlaying[i] = true;
+                        ms.mTank[i] = sc.SelectedTank;
+                    }
+                }
+
+				
 
 				Destroy(gameObject);
 			}
