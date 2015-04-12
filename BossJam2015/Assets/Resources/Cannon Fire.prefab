@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 463256}
   - 198: {fileID: 19881126}
   - 199: {fileID: 19908638}
+  - 114: {fileID: 11438062}
   m_Layer: 0
   m_Name: Cannon_smoke
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - 4: {fileID: 431598}
   - 198: {fileID: 19856844}
   - 199: {fileID: 19952856}
+  - 114: {fileID: 11401492}
   m_Layer: 0
   m_Name: Cannon_blast
   m_TagString: Untagged
@@ -87,6 +89,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 453244}
   m_RootOrder: 1
+--- !u!114 &11401492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e4baf6bc1bdbd49afa959b0837e56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11438062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e4baf6bc1bdbd49afa959b0837e56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19856844
 ParticleSystem:
   m_ObjectHideFlags: 1

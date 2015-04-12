@@ -13,6 +13,7 @@ TagManager:
   - Mine
   - Missile
   - MenuScene
+  - WorldBottom
   layers:
   - Default
   - TransparentFX

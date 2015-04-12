@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 497340}
   m_Layer: 8
   m_Name: BackRamp
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ GameObject:
   - 4: {fileID: 420898}
   m_Layer: 8
   m_Name: 9x9Platform-Dirt
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ GameObject:
   - 4: {fileID: 415262}
   m_Layer: 8
   m_Name: LeftRamp
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,7 @@ GameObject:
   - 4: {fileID: 431672}
   m_Layer: 8
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +296,7 @@ GameObject:
   - 4: {fileID: 477576}
   m_Layer: 8
   m_Name: Corners
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   - 4: {fileID: 434040}
   m_Layer: 8
   m_Name: FrontRamp
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -409,7 +409,7 @@ GameObject:
   - 4: {fileID: 431536}
   m_Layer: 8
   m_Name: RightRamp
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

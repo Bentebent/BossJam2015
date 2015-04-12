@@ -6,7 +6,7 @@ public class Main : MonoBehaviour
 {
 	private const int mWorldWidthBlocks = 50;
 	private const int mWorldDepthBlocks = 50;
-	private const int mWorldHeightBlocks = 3;
+	private const int mWorldHeightBlocks = 2;
 
 	private Vector2 mWorldHalfWidth;
 	private Vector3[] mSpawnPositions = new Vector3[4];
@@ -21,6 +21,10 @@ public class Main : MonoBehaviour
     public List<string> mTank = new List<string>();
 
     public GameObject WHATEVER;
+
+    public AudioSource[] mAudioSources;
+
+    int song;
 
 	// Use this for initialization
 	void Start () 
@@ -44,11 +48,25 @@ public class Main : MonoBehaviour
 
 		mGameplayState.Start(mh.mTankNames, mSpawnPositions);
 		Destroy(WHATEVER);
+
+        GameObject musicGO = (GameObject)Instantiate(Resources.Load("gameplay_music"));
+        mAudioSources = musicGO.GetComponents<AudioSource>();
+
+        song = Random.Range(0, 3);
+
+        mAudioSources[song].Play();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+        if (!mAudioSources[song].isPlaying)
+        {
+            song = Random.Range(0, 3);
+            mAudioSources[song].Play();
+        }
+
+
         if (mSpawningPlayers)
         {
             mSelectionMenu.Update();
