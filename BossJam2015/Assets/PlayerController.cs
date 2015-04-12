@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_turretOffset = new Vector3(0.01f, -0.02f, 1.367f);
     private Quaternion shit;
 
-    private float m_shotLimit = 1.0f;
+    private float m_shotLimit = 0.35f;
     private float m_shotTimer = 0.0f;
 
     private bool m_moved = false;

@@ -22,6 +22,10 @@ public class Main : MonoBehaviour
 
     public GameObject WHATEVER;
 
+    public AudioSource[] mAudioSources;
+
+    int song;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -44,11 +48,25 @@ public class Main : MonoBehaviour
 
 		mGameplayState.Start(mh.mTankNames, mSpawnPositions);
 		Destroy(WHATEVER);
+
+        GameObject musicGO = (GameObject)Instantiate(Resources.Load("gameplay_music"));
+        mAudioSources = musicGO.GetComponents<AudioSource>();
+
+        song = Random.Range(0, 3);
+
+        mAudioSources[song].Play();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+        if (!mAudioSources[song].isPlaying)
+        {
+            song = Random.Range(0, 3);
+            mAudioSources[song].Play();
+        }
+
+
         if (mSpawningPlayers)
         {
             mSelectionMenu.Update();

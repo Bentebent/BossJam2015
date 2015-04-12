@@ -51,6 +51,12 @@ public class MenuHandler : MonoBehaviour
 				selectedCount++;
 		}
 
+        if (mShowingNumber != 0)
+        {
+            GameObject menu_sound = GameObject.Find("menu_theme");
+            menu_sound.GetComponent<AudioSource>().volume -= 0.1f * Time.deltaTime;
+        }
+
 		if (inGameCount > 0 && inGameCount == selectedCount)
 		{
 			mCountDown -= Time.deltaTime;
