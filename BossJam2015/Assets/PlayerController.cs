@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
         
         RaycastHit hitInfo;
 
-        bool hit = Physics.Raycast(ray, out hitInfo, 30.0f, boardTiles);
+        bool hit = Physics.Raycast(ray, out hitInfo, 3.0f, boardTiles);
         float deaccSpeed = 0.0f;
 
         if (hitInfo.distance < 1.0f || !hit )
