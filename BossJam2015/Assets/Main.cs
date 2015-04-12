@@ -41,11 +41,6 @@ public class Main : MonoBehaviour
         WHATEVER = GameObject.FindGameObjectWithTag("MenuScene");
         MenuHandler mh = WHATEVER.GetComponent<MenuHandler>();
 
-		Debug.Log("Tank name 0: " + mh.mTankNames[0]);
-		Debug.Log("Tank name 1: " + mh.mTankNames[1]);
-		Debug.Log("Tank name 2: " + mh.mTankNames[2]);
-		Debug.Log("Tank name 3: " + mh.mTankNames[3]);
-
 		mGameplayState.Start(mh.mTankNames, mSpawnPositions);
 		Destroy(WHATEVER);
 
