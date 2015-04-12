@@ -8,57 +8,78 @@ public class showCase : MonoBehaviour
 
 	private GameObject mSelected;
 	private GameObject mTank;
+	private List<string> mTankFileNames;
 	private List<GameObject> mTankList;
+	private List<Texture> mFlagList;
 	private int mTankIndex = 0;
 
 	private Vector3 mUpDirection = new Vector3(0.0f, 1.0f, 0.0f);
 	private float mRotationSpeed = 36.0f;
 
 	private bool mHasSelected = false;
+	private bool mEnteredGame = false;
+
+	private Material mTapestryLeftMat;
+	private Material mTapestryRightMat;
 
 	// Use this for initialization
 	void Start ()
 	{
-		GameObject platform = transform.Find("Platform").gameObject;
 		mSelected = Resources.Load<GameObject>("SelectedText");
+
+		mTankFileNames = new List<string>();
+
+		mTankFileNames.Add("tiger_tiger");
+		mTankFileNames.Add("tiger_eagle");
+		mTankFileNames.Add("tiger_dragon");
+		mTankFileNames.Add("tiger_bear");
+		mTankFileNames.Add("sherman_tiger");
+		mTankFileNames.Add("sherman_eagle");
+		mTankFileNames.Add("sherman_dragon");
+		mTankFileNames.Add("sherman_bear");
 
 		mTankList = new List<GameObject>();
 
-		mTankList.Add(Resources.Load<GameObject>("tiger_tiger"));
-		mTankList.Add(Resources.Load<GameObject>("tiger_eagle"));
-		mTankList.Add(Resources.Load<GameObject>("tiger_dragon"));
-		mTankList.Add(Resources.Load<GameObject>("tiger_bear"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_tiger"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_eagle"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_dragon"));
-		mTankList.Add(Resources.Load<GameObject>("sherman_bear"));
-
-		foreach (GameObject tank in mTankList)
+		for (int i = 0; i < mTankFileNames.Count; ++i)
 		{
-			Rigidbody tankPhysics = tank.GetComponent<Rigidbody>();
-			tankPhysics.useGravity = false;
-			tankPhysics.isKinematic = true;
-
-			tank.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-			DestroyImmediate(tank.GetComponent<PlayerController>(), true);
-
-			Transform spot = tank.transform.Find("tank_turret").gameObject.transform.Find("spotlight");
-			if(spot != null)
-				spot.gameObject.GetComponent<Light>().intensity = 0.0f;
+			mTankList.Add(Resources.Load<GameObject>(mTankFileNames[i]));
 		}
 
-		mTank = Instantiate(mTankList[0]);
-		mTank.transform.position = platform.transform.position + new Vector3(0.0f, 0.0f, 0.0f);
+		mFlagList = new List<Texture>();
+
+		mFlagList.Add(Resources.Load<Texture>("Materials/SWE"));
+		mFlagList.Add(Resources.Load<Texture>("Materials/USA"));
+		mFlagList.Add(Resources.Load<Texture>("Materials/CHI"));
+		mFlagList.Add(Resources.Load<Texture>("Materials/RUS"));
+
+		mTapestryLeftMat = transform.Find("TapestryLeft").gameObject.GetComponent<Renderer>().material;
+		mTapestryRightMat = transform.Find("TapestryRight").gameObject.GetComponent<Renderer>().material;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		mTank.transform.Rotate(mUpDirection, mRotationSpeed * Time.deltaTime);
+		if (!mEnteredGame)
+		{
+			if (Input.GetButtonDown("Start_Player" + playerNumberStr))
+			{
+				GameObject platform = transform.Find("Platform").gameObject;
+
+				mTank = Instantiate(mTankList[0]);
+				mTank.transform.parent = transform;
+				mTank.transform.position = transform.position - new Vector3(0.0f, 1.4f, -0.8f);
+
+				Debug.Log("Player " + playerNumberStr + " has entered the game!");
+
+				mEnteredGame = true;
+			}
+
+			return;
+		}
 
 		if (!mHasSelected)
 		{
+			mTank.transform.Rotate(mUpDirection, mRotationSpeed * Time.deltaTime);
 
 			if (Input.GetButtonDown("RBumper_Player" + playerNumberStr))
 			{
@@ -68,12 +89,15 @@ public class showCase : MonoBehaviour
 			if (Input.GetButtonDown("Start_Player" + playerNumberStr))
 			{
 				GameObject selectedText = Instantiate(mSelected);
-				selectedText.transform.position = transform.position;
-				selectedText.transform.position -= new Vector3(2.0f, 0.0f, 0.0f);
+				selectedText.transform.position = transform.position + new Vector3(-2.0f, -0.8f, -1.0f);
+				selectedText.transform.parent = transform;
 				selectedText.transform.rotation = transform.rotation;
-				selectedText.transform.Rotate(new Vector3(1.0f, 0.0f, 0.0f), 25);
+				selectedText.transform.Rotate(new Vector3(1.0f, 0.0f, 0.0f), -25.0f);
 
 				mHasSelected = true;
+
+				mTank.transform.rotation = transform.rotation;
+				mTank.transform.Rotate(mUpDirection, 180.0f);
 			}
 		}
 		else
@@ -87,9 +111,36 @@ public class showCase : MonoBehaviour
 		Transform tankTransform = mTank.transform;
 
 		Destroy(mTank);
+
+		// Create a new tank and remove everything we don't want
 		mTank = Instantiate(mTankList[mTankIndex]);
+		mTank.transform.parent = transform;
 		mTank.transform.position = tankTransform.position;
 		mTank.transform.rotation = tankTransform.rotation;
-		mTank.transform.parent = transform;
+
+
+		Destroy(mTank.GetComponent<Rigidbody>());
+		Destroy(mTank.GetComponent<PlayerController>());
+		Transform spot = mTank.transform.Find("tank_turret").gameObject.transform.Find("spotlight");
+			if(spot != null)
+				spot.gameObject.GetComponent<Light>().intensity = 0.0f;
+
+		mTapestryLeftMat.SetTexture("_MainTex", mFlagList[mTankIndex % 4]);
+		mTapestryRightMat.SetTexture("_MainTex", mFlagList[mTankIndex % 4]);
+	}
+
+	public bool HasSelected
+	{
+		get { return mHasSelected; }
+	}
+
+	public bool IsInGame
+	{
+		get { return mEnteredGame; }
+	}
+
+	public string SelectedTank
+	{
+		get { return mTankFileNames[mTankIndex]; }
 	}
 }
